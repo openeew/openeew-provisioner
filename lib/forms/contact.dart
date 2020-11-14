@@ -37,23 +37,22 @@ class ContactFormState extends State<ContactForm> {
       key: _formKey,
       child: Column(
         children: <Widget>[
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: 'First name',
-              labelText: 'Device owner',
-            ),
-            validator: (value) => (value == null || value.isEmpty) ? 'First name is required' : null,
-            onChanged: (value) => setState(() { _firstName = value; }),
-          ),
+          Row(children: <Widget>[
+            Expanded(flex: 8, child: TextFormField(
+              decoration: InputDecoration(labelText: 'First name'),
+              validator: (value) => (value == null || value.isEmpty) ? 'First name is required' : null,
+              onChanged: (value) => setState(() { _firstName = value; }),
+            )),
+            Expanded(flex: 1, child: Container()),
+            Expanded(flex: 8, child: TextFormField(
+              decoration: InputDecoration(labelText: 'Last name'),
+              validator: (value) => (value == null || value.isEmpty) ? 'Last name is required' : null,
+              onChanged: (value) => setState(() { _lastName = value; }),
+            )),
+          ]),
           Space(20),
           TextFormField(
-            decoration: InputDecoration(hintText: 'Last name'),
-            validator: (value) => (value == null || value.isEmpty) ? 'Last name is required' : null,
-            onChanged: (value) => setState(() { _lastName = value; }),
-          ),
-          Space(20),
-          TextFormField(
-            decoration: InputDecoration(hintText: 'Contact email'),
+            decoration: InputDecoration(labelText: 'Contact email'),
             validator: (value) => (value == null || value.isEmpty) ? 'Contact email is required' : null,
             onChanged: (value) => setState(() { _email = value; }),
           ),
