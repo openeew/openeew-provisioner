@@ -49,12 +49,12 @@ class RegisterFormState extends State<RegisterForm> {
         style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
       ),
       Space(20),
-      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
+      Row(children: <Widget>[
         Expanded(flex: 1, child: InfoField('MAC address', data['mac_address'])),
         Expanded(flex: 1, child: InfoField('Coordinates', data['lat_lng'])),
       ]),
       Space(10),
-      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
+      Row(children: <Widget>[
         Expanded(flex: 1, child: InfoField('City', data['city'])),
         Expanded(flex: 1, child: InfoField('Country', data['country'])),
       ]),
@@ -70,13 +70,30 @@ class RegisterFormState extends State<RegisterForm> {
         style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
       ),
       Space(20),
-      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
+      Row(children: <Widget>[
         Expanded(flex: 1, child: InfoField('Network manager', data['admin'])),
       ]),
       Space(10),
       Divider(),
+      Space(10),
+      Row(children: <Widget>[
+        Expanded(flex: 4, child: ToggleButtons(
+          onPressed: (int index) => setState(() { _sendEmail = !_sendEmail; }),
+          isSelected: [!_sendEmail, _sendEmail],
+          borderRadius: BorderRadius.circular(30),
+          borderWidth: 0.0,
+          children: <Widget>[
+            Container(),
+            Icon(Icons.check_rounded)
+          ],
+        )),
+        Expanded(flex: 8, child: Text('Send me a confirmation email')),
+      ]),
+      Space(20),
+      Divider(),
       Space(20),
       NextButton(onClick: submit, text: 'Register'),
+      Space(20),
     ]);
   }
 }

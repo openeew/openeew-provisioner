@@ -7,6 +7,6 @@ class Complete extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: Text('Thank you!'));
+    return Text('Thank you!');
   }
 }
