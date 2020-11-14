@@ -11,7 +11,7 @@ class Ethernet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StepTemplate(2, 'Connect your sensor via Ethernet', <Widget>[
-        NextButton(Contact(), 'Submit')
+        NextButton(route: Contact(), text: 'Submit')
       ])
     );
   }

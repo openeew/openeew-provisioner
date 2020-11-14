@@ -14,9 +14,9 @@ class Connect extends StatelessWidget {
     return Scaffold(
       body: StepTemplate(1, 'Connect your sensor to the internet', <Widget>[
         Space(20),
-        NextButton(Ethernet(), "I've connected to an ethernet cable"),
+        NextButton(route: Wifi(), text: "I'll be connecting the device to WiFi"),
         Space(20),
-        NextButton(Wifi(), "I'll be connecting the device to WiFi")
+        NextButton(route: Ethernet(), text: "I've connected to an ethernet cable"),
       ]),
     );
   }

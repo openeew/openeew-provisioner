@@ -11,7 +11,7 @@ class Register extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StepTemplate(4, "Register your device on the OpenEEW network", <Widget>[
-        NextButton(Complete(), 'Register')
+        NextButton(route: Complete(), text: 'Register')
       ])
     );
   }

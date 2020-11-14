@@ -19,7 +19,7 @@ class Start extends StatelessWidget {
                 Text('Provision your OpenEEW sensor')
               ]
             ),
-            NextButton(Connect(), 'Get started'),
+            NextButton(route: Connect(), text: 'Get started'),
           ],
         ),
       ),

@@ -11,7 +11,7 @@ class Contact extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StepTemplate(3, "What's the best way for OpenEEW to contact you about this device?", <Widget>[
-        NextButton(Register(), 'Submit')
+        NextButton(route: Register(), text: 'Submit')
       ])
     );
   }

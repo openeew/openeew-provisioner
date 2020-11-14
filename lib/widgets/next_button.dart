@@ -1,42 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:openeew_provisioner/widgets/platform_widget.dart';
+import 'package:openeew_provisioner/operations/perform_route.dart';
 
-class NextButton extends PlatformWidget {
+import 'package:openeew_provisioner/widgets/button.dart';
+
+class NextButton extends StatelessWidget {
   final Widget route;
   final String text;
+  final Function onClick;
 
-  const NextButton(this.route, this.text);
+  const NextButton({ this.route, this.onClick, this.text });
 
   @override
-  Widget ios(BuildContext context) {
-    return CupertinoButton(
-      color: Colors.blue,
-      padding: EdgeInsets.all(20.0),
-      onPressed: () {
-        Navigator.push(
-          context,
-          CupertinoPageRoute(builder: (context) => this.route)
-        );
+  Widget build(BuildContext context) {
+    return Button(text: this.text, onClick: () {
+      if (this.onClick != null) {
+        this.onClick(context);
+      } else if (this.route != null) {
+        PerformRoute({ 'context': context, 'route': this.route }).perform();
       }
-    );
-  }
-
-  @override
-  Widget fallback(BuildContext context) {
-    return FlatButton(
-      color: Colors.blue,
-      textColor: Colors.white,
-      padding: EdgeInsets.all(20.0),
-      splashColor: Colors.blueAccent,
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => this.route)
-        );
-      },
-      child: Text(this.text)
-    );
+    });
   }
 }
