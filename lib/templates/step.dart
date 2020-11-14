@@ -17,19 +17,22 @@ class StepTemplate extends StatelessWidget {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Space(20),
           Logo(0.75, false),
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                StepProgress(this.step),
-                Column(children: <Widget>[StepTitle(this.step, this.title)] + this.children),
-                Container(),
-              ],
+            child: Container(
+              constraints: BoxConstraints(minWidth: 150, maxWidth: 400),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  StepProgress(this.step),
+                  Column(children: <Widget>[StepTitle(this.step, this.title)] + this.children),
+                  Container(),
+                ],
+              ),
             ),
           ),
         ],

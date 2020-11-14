@@ -16,6 +16,7 @@ class WifiForm extends StatefulWidget {
 
 class WifiFormState extends State<WifiForm> {
   final _formKey = GlobalKey<FormState>();
+  // TODO: fetch available wifi connections
   final ssids = ['Porritt Pirates 5', 'Porritt Pirates'];
 
   String _ssid = '';
@@ -26,8 +27,6 @@ class WifiFormState extends State<WifiForm> {
 
     if (_formKey.currentState.validate()) {
       PerformRoute({ 'context': context, 'route': Contact() }).perform();
-    } else {
-
     }
   }
 
