@@ -24,10 +24,10 @@ class Button extends PlatformWidget {
   @override
   Widget fallback(BuildContext context) {
     return FlatButton(
-      color: Colors.blue,
+      color: Colors.pink[600],
       textColor: Colors.white,
-      padding: EdgeInsets.all(20.0),
-      splashColor: Colors.blueAccent,
+      padding: EdgeInsets.all(15.0),
+      splashColor: Colors.pinkAccent,
       onPressed: this.onClick,
       child: Text(this.text)
     );

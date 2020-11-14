@@ -18,8 +18,8 @@ class StepProgress extends StatelessWidget {
           LinearPercentIndicator(
             width: 250,
             percent: (this.step / 5),
-            backgroundColor: Colors.lightBlue[50],
-            progressColor: Colors.blue,
+            backgroundColor: Colors.pink[50],
+            progressColor: Colors.pink[600],
             linearStrokeCap: LinearStrokeCap.roundAll,
           ),
         ],
