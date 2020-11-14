@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:openeew_provisioner/screens/4_register.dart';
+import 'package:openeew_provisioner/templates/step.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
 
-import 'package:openeew_provisioner/operations/perform_route.dart';
-
 class ContactForm extends StatefulWidget {
+  final Function callback;
+
+  ContactForm({ Key key, this.callback }) : super(key: key);
+
   @override
   ContactFormState createState() {
     return ContactFormState();
@@ -25,7 +27,7 @@ class ContactFormState extends State<ContactForm> {
     // TODO: create / verify user account
 
     if (_formKey.currentState.validate()) {
-      PerformRoute({ 'context': context, 'route': Register() }).perform();
+      widget.callback();
     }
   }
 

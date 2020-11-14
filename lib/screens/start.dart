@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:openeew_provisioner/screens/1_connect.dart';
+import 'package:openeew_provisioner/screens/steps.dart';
 import 'package:openeew_provisioner/widgets/logo.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
 import 'package:openeew_provisioner/widgets/space.dart';
@@ -19,7 +19,7 @@ class Start extends StatelessWidget {
                 Text('Provision your OpenEEW sensor')
               ]
             ),
-            NextButton(route: Connect(), text: 'Get started'),
+            NextButton(route: Steps(), text: 'Get started'),
           ],
         ),
       ),

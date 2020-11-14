@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:openeew_provisioner/screens/3_contact.dart';
+import 'package:openeew_provisioner/templates/step.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
 
-import 'package:openeew_provisioner/operations/perform_route.dart';
-
 class WifiForm extends StatefulWidget {
+  final Function callback;
+
+  WifiForm({ Key key, this.callback }) : super(key: key);
+
   @override
   WifiFormState createState() {
     return WifiFormState();
@@ -26,7 +28,7 @@ class WifiFormState extends State<WifiForm> {
     // TODO: validate wifi connection
 
     if (_formKey.currentState.validate()) {
-      PerformRoute({ 'context': context, 'route': Contact() }).perform();
+      widget.callback();
     }
   }
 
