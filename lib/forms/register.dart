@@ -41,13 +41,14 @@ class RegisterFormState extends State<RegisterForm> {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
+      Space(10),
+      Divider(),
+      Space(10),
       Text(
         'Device summary',
         style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
       ),
-      Space(10),
-      Divider(),
-      Space(10),
+      Space(20),
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
         Expanded(flex: 1, child: InfoField('MAC address', data['mac_address'])),
         Expanded(flex: 1, child: InfoField('Coordinates', data['lat_lng'])),
@@ -63,17 +64,18 @@ class RegisterFormState extends State<RegisterForm> {
         Expanded(flex: 1, child: InfoField('Contact email', data['email'])),
       ]),
       Divider(),
+      Space(10),
       Text(
         'Network information',
         style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
       ),
-      Space(10),
+      Space(20),
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
         Expanded(flex: 1, child: InfoField('Network manager', data['admin'])),
       ]),
       Space(10),
       Divider(),
-      Space(10),
+      Space(20),
       NextButton(onClick: submit, text: 'Register'),
     ]);
   }

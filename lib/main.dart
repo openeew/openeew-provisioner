@@ -8,6 +8,10 @@ void main() {
 class OpenEEWProvisioner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'OpenEEW Provisioner', home: Start());
+    return MaterialApp(
+      title: 'OpenEEW Provisioner',
+      theme: ThemeData(primarySwatch: Colors.pink),
+      home: Start()
+    );
   }
 }
