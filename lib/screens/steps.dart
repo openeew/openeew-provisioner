@@ -53,18 +53,20 @@ class StepsState extends State<Steps> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Column(children: <Widget>[
-              StepProgress(getStep() / maxSteps),
-              Space(20),
-              Logo(0.75, false),
-              Space(60),
-            ]),
-            getWidget(),
-          ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Column(children: <Widget>[
+                StepProgress(getStep() / maxSteps),
+                Space(20),
+                Logo(0.75, false),
+                Space(60),
+              ]),
+              getWidget(),
+            ],
+          ),
         ),
       ),
     );
