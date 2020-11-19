@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:wifi_info_flutter/wifi_info_flutter.dart';
 
 import 'package:openeew_provisioner/templates/step.dart';
 
@@ -17,39 +19,57 @@ class WifiForm extends StatefulWidget {
 }
 
 class WifiFormState extends State<WifiForm> {
-  final _formKey = GlobalKey<FormState>();
-  // TODO: fetch available wifi connections
-  final ssids = ['Porritt Pirates 5', 'Porritt Pirates'];
-
-  String _ssid = '';
-  String _password = '';
+  final formKey = GlobalKey<FormState>();
+  String _ssid;
+  String _bssid;
+  String _password;
 
   void submit(BuildContext context) {
-    // TODO: validate wifi connection
-
-    if (_formKey.currentState.validate()) {
-      widget.callback();
+    if (formKey.currentState.validate()) {
+      widget.callback({
+        'ssid': _ssid,
+        'bssid': _bssid,
+        'password': _password,
+      });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    initSmartconfig();
+  }
+
+  Future<void> initSmartconfig() async {
+    try {
+      String ssid = await WifiInfo().getWifiName();
+      String bssid = await WifiInfo().getWifiBSSID();
+
+      if (mounted) {
+        setState(() {
+          _ssid = ssid;
+          _bssid = bssid;
+        });
+      }
+    } on PlatformException {}
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Column(
         children: <Widget>[
-          DropdownButtonFormField<String>(
+          TextFormField(
+            enabled: false,
+            controller: TextEditingController(text: _ssid),
             decoration: InputDecoration(
               icon: Icon(Icons.wifi_outlined),
-              hintText: 'Select a network',
+              hintText: 'Your WiFi network',
               labelText: 'SSID',
             ),
-            items: ssids.map((value) => DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            )).toList(),
-            validator: (value) => (value == null || value.isEmpty) ? 'Network is required' : null,
-            onChanged: (value) => setState(() { _ssid = value; }),
+            validator: (value) => (value == null || value.isEmpty) ? 'Please connect to a Wifi network' : null,
           ),
           Space(20),
           TextFormField(
