@@ -25,7 +25,12 @@ class Connect extends StatelessWidget {
         },
         text: "I'll be connecting the device to WiFi",
       ),
-      Space(20),
+      Space(10),
+      Text(
+        "(We'll ask for access to your location in order to detect your Wifi connection)",
+        style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic),
+      ),
+      Space(30),
       NextButton(
         onClick: (context) => setStep(StepMarker.ethernet),
         text: "I've connected to an ethernet cable",
