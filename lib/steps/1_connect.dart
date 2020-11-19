@@ -28,6 +28,7 @@ class Connect extends StatelessWidget {
       Space(10),
       Text(
         "(We'll ask for access to your location in order to detect your Wifi connection)",
+        textAlign: TextAlign.center,
         style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic),
       ),
       Space(30),
