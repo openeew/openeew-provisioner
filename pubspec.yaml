@@ -24,6 +24,7 @@ dependencies:
   percent_indicator: "^2.1.7+2"
   connectivity: "^2.0.2"
   wifi_info_flutter: "^1.0.1"
+  http: "^0.12.2"
   permission_handler: "^5.0.1"
   smartconfig: "^0.0.1"
   flutter:
