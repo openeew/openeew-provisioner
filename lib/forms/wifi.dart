@@ -72,7 +72,7 @@ class WifiFormState extends State<WifiForm> {
   Future<void> initLocation() async {
     try {
       Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-      List<Placemark> placemarks = await placemarkFromCoordinates(position.longitude, position.latitude);
+      List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
 
       if (mounted) {
         setState(() {
