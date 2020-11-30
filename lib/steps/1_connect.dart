@@ -8,8 +8,9 @@ import 'package:permission_handler/permission_handler.dart';
 
 class Connect extends StatelessWidget {
   final Function setStep;
+  final Map state;
 
-  Connect(this.setStep);
+  Connect(this.setStep, this.state);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class Connect extends StatelessWidget {
       NextButton(
         onClick: (context) async {
           if (await Permission.location.request().isGranted) {
-            setStep(StepMarker.wifi);
+            setStep(StepMarker.wifi, {});
           } else {
             debugPrint("Please grant permissions!");
           }

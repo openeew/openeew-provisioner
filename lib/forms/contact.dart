@@ -27,7 +27,11 @@ class ContactFormState extends State<ContactForm> {
     // TODO: create / verify user account
 
     if (_formKey.currentState.validate()) {
-      widget.callback();
+      widget.callback({
+        'first_name': _firstName,
+        'last_name': _lastName,
+        'email': _email,
+      });
     }
   }
 

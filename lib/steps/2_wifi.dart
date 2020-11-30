@@ -7,21 +7,15 @@ import 'package:openeew_provisioner/templates/step.dart';
 
 class Wifi extends StatelessWidget {
   final Function setStep;
+  final Map state;
 
-  Wifi(this.setStep);
+  Wifi(this.setStep, this.state);
 
   @override
   Widget build(BuildContext context) {
     return StepTemplate(2, 'Enter your credentials to enable internet on the sensor', <Widget>[
       WifiForm(callback: (state) {
-        // Smartconfig.start(
-        //   state['ssid'],
-        //   state['bssid'],
-        //   state['password']
-        // ).then((onValue) {
-        //   debugPrint(onValue);
-        // });
-        setStep(StepMarker.contact);
+        setStep(StepMarker.contact, state);
       })
     ]);
   }

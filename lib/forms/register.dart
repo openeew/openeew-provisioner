@@ -14,29 +14,21 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class RegisterForm extends StatefulWidget {
   final Function callback;
+  final Map state;
 
-  RegisterForm({ Key key, this.callback }) : super(key: key);
+  RegisterForm({ Key key, this.state, this.callback }) : super(key: key);
 
   @override
   RegisterFormState createState() {
-    return RegisterFormState();
+    return RegisterFormState(state);
   }
 }
 
 class RegisterFormState extends State<RegisterForm> {
   bool _sendEmail = true;
+  final Map state;
 
-  // TODO: gather this information from previous steps
-  final Map data = {
-    'mac_address': '120869334',
-    'latitude': '17.01',
-    'longitude': '-96.2',
-    'city': 'Oaxaca',
-    'country': 'Mexico',
-    'owner': 'Luis Vasquez',
-    'email': 'test@test.com',
-    'admin': 'admin@test.com',
-  };
+  RegisterFormState(this.state);
 
   void submit(BuildContext context) {
     sendRegistration();
@@ -49,7 +41,7 @@ class RegisterFormState extends State<RegisterForm> {
   }
 
   Future<void> sendRegistration() async {
-    var response = await http.post(DotEnv().env['ENDPOINT_URL'], body: jsonEncode(data));
+    var response = await http.post(DotEnv().env['ENDPOINT_URL'], body: jsonEncode(this.state));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to register user.');
@@ -68,18 +60,18 @@ class RegisterFormState extends State<RegisterForm> {
       ),
       Space(20),
       Row(children: <Widget>[
-        Expanded(flex: 1, child: InfoField('MAC address', data['mac_address'])),
-        Expanded(flex: 1, child: InfoField('Coordinates', data['latitude'] + ',' + data['longitude'])),
+        Expanded(flex: 1, child: InfoField('MAC address', state['mac'])),
+        Expanded(flex: 1, child: InfoField('Coordinates', state['latitude'] + ',' + state['longitude'])),
       ]),
       Space(10),
       Row(children: <Widget>[
-        Expanded(flex: 1, child: InfoField('City', data['city'])),
-        Expanded(flex: 1, child: InfoField('Country', data['country'])),
+        Expanded(flex: 1, child: InfoField('City', state['city'])),
+        Expanded(flex: 1, child: InfoField('Country', state['country'])),
       ]),
       Space(10),
       Row(children: <Widget>[
-        Expanded(flex: 1, child: InfoField('Device owner', data['owner'])),
-        Expanded(flex: 1, child: InfoField('Contact email', data['email'])),
+        Expanded(flex: 1, child: InfoField('Device owner', state['first_name'] + ' ' + state['last_name'])),
+        Expanded(flex: 1, child: InfoField('Contact email', state['email'])),
       ]),
       Divider(),
       Space(10),
@@ -89,7 +81,7 @@ class RegisterFormState extends State<RegisterForm> {
       ),
       Space(20),
       Row(children: <Widget>[
-        Expanded(flex: 1, child: InfoField('Network manager', data['admin'])),
+        Expanded(flex: 1, child: InfoField('Network manager', state['email'])),
       ]),
       Space(10),
       Divider(),

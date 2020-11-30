@@ -29,13 +29,16 @@ class WifiFormState extends State<WifiForm> {
   String _longitude;
   String _city;
   String _country;
+  String _mac;
 
   void submit(BuildContext context) {
     if (formKey.currentState.validate()) {
+      // TODO: turn on smartconfig to fetch mac address
+      // var config = await Smartconfig.start(_ssid, _bssid, _password);
+      _mac = "te:st:ma:ca:dd:re:ss";
+
       widget.callback({
-        'ssid': _ssid,
-        'bssid': _bssid,
-        'password': _password,
+        'mac': _mac,
         'latitude': _latitude,
         'longitude': _longitude,
         'city': _city,

@@ -6,13 +6,14 @@ import 'package:openeew_provisioner/templates/step.dart';
 
 class Register extends StatelessWidget {
   final Function setStep;
+  final Map state;
 
-  Register(this.setStep);
+  Register(this.setStep, this.state);
 
   @override
   Widget build(BuildContext context) {
     return StepTemplate(4, "Register your device on the OpenEEW network", <Widget>[
-      RegisterForm(callback: () => setStep(StepMarker.complete))
+      RegisterForm(state: this.state, callback: () => setStep(StepMarker.complete, {}))
     ]);
   }
 }
