@@ -6,6 +6,8 @@ import 'package:openeew_provisioner/templates/step.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 
 class WifiForm extends StatefulWidget {
   final Function callback;
@@ -23,6 +25,10 @@ class WifiFormState extends State<WifiForm> {
   String _ssid;
   String _bssid;
   String _password;
+  String _latitude;
+  String _longitude;
+  String _city;
+  String _country;
 
   void submit(BuildContext context) {
     if (formKey.currentState.validate()) {
@@ -30,6 +36,10 @@ class WifiFormState extends State<WifiForm> {
         'ssid': _ssid,
         'bssid': _bssid,
         'password': _password,
+        'latitude': _latitude,
+        'longitude': _longitude,
+        'city': _city,
+        'country': _country,
       });
     }
   }
@@ -38,6 +48,7 @@ class WifiFormState extends State<WifiForm> {
   void initState() {
     super.initState();
 
+    initLocation();
     initSmartconfig();
   }
 
@@ -50,6 +61,22 @@ class WifiFormState extends State<WifiForm> {
         setState(() {
           _ssid = ssid;
           _bssid = bssid;
+        });
+      }
+    } on PlatformException {}
+  }
+
+  Future<void> initLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      List<Placemark> placemarks = await placemarkFromCoordinates(position.longitude, position.latitude);
+
+      if (mounted) {
+        setState(() {
+          _latitude = position.latitude.toString();
+          _longitude = position.longitude.toString();
+          _city = placemarks[0].locality.toString();
+          _country = placemarks[0].country.toString();
         });
       }
     } on PlatformException {}

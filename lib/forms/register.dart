@@ -2,11 +2,15 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart';
+
 import 'package:openeew_provisioner/templates/step.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/info_field.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
+
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class RegisterForm extends StatefulWidget {
   final Function callback;
@@ -25,7 +29,8 @@ class RegisterFormState extends State<RegisterForm> {
   // TODO: gather this information from previous steps
   final Map data = {
     'mac_address': '120869334',
-    'lat_lng': '17.01,-96.2',
+    'latitude': '17.01',
+    'longitude': '-96.2',
     'city': 'Oaxaca',
     'country': 'Mexico',
     'owner': 'Luis Vasquez',
@@ -33,23 +38,22 @@ class RegisterFormState extends State<RegisterForm> {
     'admin': 'admin@test.com',
   };
 
-  Future<String> sendOpenEEWRegistration( ) async {
-    var url = 'https://openeew-earthquakes.mybluemix.net/OpenEEWRegistration';
-    var response = await http.post(url, body: jsonEncode( data ) );
-    if (response.statusCode == 200) {
-      // Success - do something here?
-    } else {
-      throw Exception('Failed to register user.');
-    }
-  }
-
   void submit(BuildContext context) {
-    // TODO: register device
-    // TODO: send email to user
+    sendRegistration();
 
-    sendOpenEEWRegistration();
+    if(_sendEmail) {
+      // TODO: send email to user
+    }
 
     widget.callback();
+  }
+
+  Future<void> sendRegistration() async {
+    var response = await http.post(DotEnv().env['ENDPOINT_URL'], body: jsonEncode(data));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to register user.');
+    }
   }
 
   @override
@@ -65,7 +69,7 @@ class RegisterFormState extends State<RegisterForm> {
       Space(20),
       Row(children: <Widget>[
         Expanded(flex: 1, child: InfoField('MAC address', data['mac_address'])),
-        Expanded(flex: 1, child: InfoField('Coordinates', data['lat_lng'])),
+        Expanded(flex: 1, child: InfoField('Coordinates', data['latitude'] + ',' + data['longitude'])),
       ]),
       Space(10),
       Row(children: <Widget>[

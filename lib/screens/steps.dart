@@ -23,9 +23,14 @@ class Steps extends StatefulWidget {
 class StepsState extends State<Steps> {
   final int maxSteps = 5;
   var _step = StepMarker.connect;
+  Map _state = {};
 
-  void setStep(value) {
-    setState(() => { _step = value });
+  void setStep(value, state) {
+    _state.addAll(state);
+    setState(() {
+      _step = value;
+      _state = _state;
+    });
   }
 
   int getStep() {
