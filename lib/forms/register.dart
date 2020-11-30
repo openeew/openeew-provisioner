@@ -1,5 +1,7 @@
+import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 import 'package:openeew_provisioner/templates/step.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
@@ -31,9 +33,21 @@ class RegisterFormState extends State<RegisterForm> {
     'admin': 'admin@test.com',
   };
 
+  Future<String> sendOpenEEWRegistration( ) async {
+    var url = 'https://openeew-earthquakes.mybluemix.net/OpenEEWRegistration';
+    var response = await http.post(url, body: jsonEncode( data ) );
+    if (response.statusCode == 200) {
+      // Success - do something here?
+    } else {
+      throw Exception('Failed to register user.');
+    }
+  }
+
   void submit(BuildContext context) {
     // TODO: register device
     // TODO: send email to user
+
+    sendOpenEEWRegistration();
 
     widget.callback();
   }
