@@ -12,6 +12,12 @@ The OpenEEW Provisioning application helps enable an OpenEEW sensor:
 
 Enjoy! Give us [feedback](https://github.com/openeew/openeew-provisioner/issues) if you have suggestions on how to improve this information.
 
+## Configuration
+
+This app uses [dotenv](https://pub.dev/packages/flutter_dotenv) in order to manage environment variables
+
+In order to apply environment variables; duplicate the `.env.example` file as `.env`, and overwrite the values in that file.
+
 ## Contributing
 
 This provisioning app is built on [Flutter](https://flutter.dev/).

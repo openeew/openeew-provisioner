@@ -23,9 +23,14 @@ class Steps extends StatefulWidget {
 class StepsState extends State<Steps> {
   final int maxSteps = 5;
   var _step = StepMarker.connect;
+  Map _state = {};
 
-  void setStep(value) {
-    setState(() => { _step = value });
+  void setStep(value, state) {
+    _state.addAll(state);
+    setState(() {
+      _step = value;
+      _state = _state;
+    });
   }
 
   int getStep() {
@@ -41,12 +46,12 @@ class StepsState extends State<Steps> {
 
   Widget getWidget() {
     switch (_step) {
-      case StepMarker.connect:  return Connect(setStep);
-      case StepMarker.wifi:     return Wifi(setStep);
-      case StepMarker.ethernet: return Ethernet(setStep);
-      case StepMarker.contact:  return Contact(setStep);
-      case StepMarker.register: return Register(setStep);
-      case StepMarker.complete: return Complete(setStep);
+      case StepMarker.connect:  return Connect(setStep, _state);
+      case StepMarker.wifi:     return Wifi(setStep, _state);
+      case StepMarker.ethernet: return Ethernet(setStep, _state);
+      case StepMarker.contact:  return Contact(setStep, _state);
+      case StepMarker.register: return Register(setStep, _state);
+      case StepMarker.complete: return Complete(setStep, _state);
     }
   }
 
