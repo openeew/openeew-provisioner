@@ -34,7 +34,7 @@ class Connect extends StatelessWidget {
       ),
       Space(30),
       NextButton(
-        onClick: (context) => setStep(StepMarker.ethernet),
+        onClick: (context) => setStep(StepMarker.ethernet,{}),
         text: "I've connected to an ethernet cable",
       ),
     ]);
