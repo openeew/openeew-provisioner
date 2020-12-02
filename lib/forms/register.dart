@@ -60,7 +60,7 @@ class RegisterFormState extends State<RegisterForm> {
       ),
       Space(20),
       Row(children: <Widget>[
-        Expanded(flex: 1, child: InfoField('MAC address', state['mac'])),
+        Expanded(flex: 1, child: InfoField('MAC address', state['macaddress'])),
         Expanded(flex: 1, child: InfoField('Coordinates', state['latitude'] + ',' + state['longitude'])),
       ]),
       Space(10),

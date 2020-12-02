@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:wifi_info_flutter/wifi_info_flutter.dart';
 
 import 'package:openeew_provisioner/templates/step.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
+
+import 'package:openeew_provisioner/operations/perform_permission_request.dart';
+import 'package:openeew_provisioner/operations/perform_position_request.dart';
+import 'package:openeew_provisioner/operations/perform_smartconfig_request.dart';
+import 'package:openeew_provisioner/operations/perform_wifi_request.dart';
 
 class WifiForm extends StatefulWidget {
   final Function callback;
@@ -31,14 +33,16 @@ class WifiFormState extends State<WifiForm> {
   String _country;
   String _mac;
 
-  void submit(BuildContext context) {
+  void submit(BuildContext context) async {
     if (formKey.currentState.validate()) {
-      // TODO: turn on smartconfig to fetch mac address
-      // var config = await Smartconfig.start(_ssid, _bssid, _password);
-      _mac = "te:st:ma:ca:dd:re:ss";
+      String _macaddress = await PerformSmartconfigRequest({
+        'ssid': _ssid,
+        'bssid': _bssid,
+        'password': _password,
+      }).perform();
 
       widget.callback({
-        'mac': _mac,
+        'macaddress': _macaddress.replaceAll(':', ''),
         'latitude': _latitude,
         'longitude': _longitude,
         'city': _city,
@@ -56,14 +60,18 @@ class WifiFormState extends State<WifiForm> {
   }
 
   Future<void> initSmartconfig() async {
+    if (!await PerformPermissionRequest().perform()) {
+      debugPrint("Please grant permissions!");
+      return;
+    }
+
     try {
-      String ssid = await WifiInfo().getWifiName();
-      String bssid = await WifiInfo().getWifiBSSID();
+      Map wifi = await PerformWifiRequest().perform();
 
       if (mounted) {
         setState(() {
-          _ssid = ssid;
-          _bssid = bssid;
+          _ssid = wifi['ssid'];
+          _bssid = wifi['bssid'];
         });
       }
     } on PlatformException {}
@@ -71,15 +79,14 @@ class WifiFormState extends State<WifiForm> {
 
   Future<void> initLocation() async {
     try {
-      Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-      List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+      Map position = await PerformPositionRequest().perform();
 
       if (mounted) {
         setState(() {
-          _latitude = position.latitude.toString();
-          _longitude = position.longitude.toString();
-          _city = placemarks[0].locality.toString();
-          _country = placemarks[0].country.toString();
+          _latitude = position['latitude'];
+          _longitude = position['longitude'];
+          _city = position['city'];
+          _country = position['country'];
         });
       }
     } on PlatformException {}

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smartconfig/smartconfig.dart';
 
 import 'package:openeew_provisioner/forms/wifi.dart';
 
