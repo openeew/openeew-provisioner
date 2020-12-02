@@ -13,6 +13,8 @@ class PerformSmartconfigRequest extends AsyncPlatformOperation {
 
   @override
   Future<String> fallback() async {
-    return await Smartconfig.start(this.args['ssid'], this.args['bssid'], this.args['password']);
+    var result = await Smartconfig.start(this.args['ssid'], this.args['bssid'], this.args['password']);
+    printDebug(result.toString());
+    return result;
   }
 }
