@@ -17,11 +17,11 @@ class Connect extends StatelessWidget {
       Space(20),
       NextButton(
         onClick: (context) => setStep(StepMarker.wifi, {}),
-        text: "Connect via Wifi",
+        text: "Connect via WiFi",
       ),
       Space(10),
       Text(
-        "(We'll ask for access to your location in order to detect your Wifi connection)",
+        "(We'll ask for access to your location in order to detect your WiFi connection)",
         textAlign: TextAlign.center,
         style: TextStyle(fontSize: 14.0, fontStyle: FontStyle.italic),
       ),

@@ -41,8 +41,12 @@ class WifiFormState extends State<WifiForm> {
         'password': _password,
       }).perform();
 
+      if ( _macaddress == null ) {
+        // SmartConfig failed / timed out
+        _macaddress = "";
+      }
       widget.callback({
-        'macaddress': _macaddress.replaceAll(':', ''),
+        'macaddress': _macaddress,
         'latitude': _latitude,
         'longitude': _longitude,
         'city': _city,
@@ -121,7 +125,7 @@ class WifiFormState extends State<WifiForm> {
             onChanged: (value) => setState(() { _password = value; }),
           ),
           Space(20),
-          NextButton(onClick: submit, text: 'Submit')
+          NextButton(onClick: submit, text: 'Send WiFi to OpenEEW sensor')
         ],
       ),
     );
