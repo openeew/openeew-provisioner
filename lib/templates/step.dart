@@ -5,7 +5,7 @@ import 'package:openeew_provisioner/widgets/step_progress.dart';
 import 'package:openeew_provisioner/widgets/logo.dart';
 import 'package:openeew_provisioner/widgets/space.dart';
 
-enum StepMarker { connect, wifi, ethernet, contact, register, complete }
+enum StepMarker { connect, wifi, contact, register, complete }
 
 class StepTemplate extends StatelessWidget {
   final List<Widget> children;

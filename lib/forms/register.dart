@@ -31,7 +31,11 @@ class RegisterFormState extends State<RegisterForm> {
   RegisterFormState(this.state);
 
   void submit(BuildContext context) {
-    sendRegistration();
+    if( state['macaddress'] != "" ) {
+      // Only send the registration data if SmartConfig connected
+      // successfully with a sensor and received a Mac Address
+      sendRegistration();
+    }
 
     if(_sendEmail) {
       // TODO: send email to user
@@ -60,7 +64,7 @@ class RegisterFormState extends State<RegisterForm> {
       ),
       Space(20),
       Row(children: <Widget>[
-        Expanded(flex: 1, child: InfoField('MAC address', state['mac'])),
+        Expanded(flex: 1, child: InfoField('MAC address', state['macaddress'])),
         Expanded(flex: 1, child: InfoField('Coordinates', state['latitude'] + ',' + state['longitude'])),
       ]),
       Space(10),

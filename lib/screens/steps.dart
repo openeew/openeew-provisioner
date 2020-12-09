@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:openeew_provisioner/steps/1_connect.dart';
 import 'package:openeew_provisioner/steps/2_wifi.dart';
-import 'package:openeew_provisioner/steps/2_ethernet.dart';
 import 'package:openeew_provisioner/steps/3_contact.dart';
 import 'package:openeew_provisioner/steps/4_register.dart';
 import 'package:openeew_provisioner/steps/5_complete.dart';
@@ -37,7 +36,6 @@ class StepsState extends State<Steps> {
     switch(_step) {
       case StepMarker.connect:  return 1;
       case StepMarker.wifi:     return 2;
-      case StepMarker.ethernet: return 2;
       case StepMarker.contact:  return 3;
       case StepMarker.register: return 4;
       case StepMarker.complete: return 5;
@@ -48,7 +46,6 @@ class StepsState extends State<Steps> {
     switch (_step) {
       case StepMarker.connect:  return Connect(setStep, _state);
       case StepMarker.wifi:     return Wifi(setStep, _state);
-      case StepMarker.ethernet: return Ethernet(setStep, _state);
       case StepMarker.contact:  return Contact(setStep, _state);
       case StepMarker.register: return Register(setStep, _state);
       case StepMarker.complete: return Complete(setStep, _state);
