@@ -160,7 +160,7 @@ ETH  MAC: 24:6F:28:CC:E8:8F
 246F28CCE88C
 ETH Started
 ```
-1. OpenEEW sensor does an http post to the /activation restful endpoint and sends its mac address and firmware version.
+5. OpenEEW sensor does an http post to the /activation restful endpoint and sends its mac address and firmware version.
 ```bash
 Waiting for time
 .Time sync'd
@@ -169,7 +169,7 @@ Contacting the OpenEEW Device Activation Endpoint :
 https://openeew-devicemgmt.mybluemix.net/activation?ver=1
 Sending Device Activation : {"macaddress":"246F28CCE88C","firmware_device":"1.2.0"}
 ```
-1. Node-RED endpoint receives the data and replies with the MQTT broker details, firmware update details (latest version and url)
+6. Node-RED endpoint receives the data and replies with the MQTT broker details, firmware update details (latest version and url)
 ```bash
 HTTP Response code: 200
 HTTP post response payload: {"org":"7p7xwk","firmware_latest":"1.2.0","firmware_ota_url":"https://openeew-devicemgmt.mybluemix.net/firmware/firmware-1.2.0.bin"}
@@ -180,11 +180,14 @@ MQTT_USER:use-token-auth  MQTT_TOKEN:OpenEEW-sens0r  MQTT_DEVICEID:d:7p7xwk:Open
 Attempting MQTT connection...LED_CONNECT_CLOUD - Cyan
 MQTT Connected
 ```
-1. Node-RED adds the IoT sensor device (if necessary) to Watson IoT Platform. See the fourth section of the Node-RED flow.
+
+7. Node-RED adds the IoT sensor device (if necessary) to Watson IoT Platform. See the fourth section of the Node-RED flow.
 ![Node-RED flow which adds device to Watson IoT Platform](images/Node-RED-Activation-Endpoint-WIoTPadd.png)
-1. Node-RED searches the Cloudant database for this mac address and adds / updates Cloudant database record with activation date and last check-in timestamps. See third section of the Node-RED flow.
+
+8. Node-RED searches the Cloudant database for this mac address and adds / updates Cloudant database record with activation date and last check-in timestamps. See third section of the Node-RED flow.
 ![Node-RED flow which adds device to Cloudant DB](images/Node-RED-Activation-Endpoint-CloudantAdd.png)
-1. While steps 5 to 8 are occurring, the user enters their First name, Last name, email address in the OpenEEW Provisioning app form and then press the **Submit** button.
+
+9. While steps 5 to 8 are occurring, the user enters their First name, Last name, email address in the OpenEEW Provisioning app form and then press the **Submit** button.
 They then review personally identifiable information - First name, Last name, email, mac address (sent from the board),
 City, Country, Latitude, Longitude (which the app acquires from SmartPhone GPS).  
 When they press the **Register** button, the data is posted to a http restful endpoint /OpenEEWRegistration
@@ -197,13 +200,17 @@ When they press the **Register** button, the data is posted to a http restful en
 <img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-Review-Register.png">
 </p>
 </td></tr></table>
-1. Node-RED /OpenEEWRegistration endpoint receives the user information from the mobile app. See second section of the Node-RED flow.
+
+10. Node-RED /OpenEEWRegistration endpoint receives the user information from the mobile app. See second section of the Node-RED flow.
 ![Node-RED flow which adds user registration details to Cloudant DB](images/Node-RED-Registration-Endpoint-flow.png)
-1. Node-RED searches the Cloudant database for this mac address. It then adds or updates the Cloudant record with the user data. See third section of the Node-RED flow.
+
+11. Node-RED searches the Cloudant database for this mac address. It then adds or updates the Cloudant record with the user data. See third section of the Node-RED flow.
 ![Node-RED flow which adds user registration details to Cloudant DB](images/Node-RED-Registration-Endpoint-CloudantAdd.png)
-1. Merged record is available in the Cloudant database, indexed by mac address.  Note that either Step 8 or 11 can occur first. Order is not important.
+
+12. Merged record is available in the Cloudant database, indexed by mac address.  Note that either Step 8 or 11 can occur first. Order is not important.
 ![Cloudant DB record](images/OpenEEW-Devices-CloudantDB-record.png)
-1. The OpenEEW Provisioning app ends with a Thank You message.
+
+13. The OpenEEW Provisioning app ends with a Thank You message.
 <table><tr><td>
 <p align="center">
 <img width="25%" height="25%" src="./images/OpenEEW-Provisioning-App-ThankYou.png">
