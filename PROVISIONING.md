@@ -198,11 +198,11 @@ When they press the **Register** button, the data is posted to a http restful en
 </p>
 </td></tr></table>
 1. Node-RED /OpenEEWRegistration endpoint receives the user information from the mobile app. See second section of the Node-RED flow.
-![Node-RED flow which adds user registration details to Cloudant DB](./images/Node-RED-Registration-Endpoint-flow.png)
+![Node-RED flow which adds user registration details to Cloudant DB](images/Node-RED-Registration-Endpoint-flow.png)
 1. Node-RED searches the Cloudant database for this mac address. It then adds or updates the Cloudant record with the user data. See third section of the Node-RED flow.
-![Node-RED flow which adds user registration details to Cloudant DB](./images/Node-RED-Registration-Endpoint-CloudantAdd.png)
+![Node-RED flow which adds user registration details to Cloudant DB](images/Node-RED-Registration-Endpoint-CloudantAdd.png)
 1. Merged record is available in the Cloudant database, indexed by mac address.  Note that either Step 8 or 11 can occur first. Order is not important.
-![Cloudant DB record](./images/OpenEEW-Devices-CloudantDB-record.png)
+![Cloudant DB record](images/OpenEEW-Devices-CloudantDB-record.png)
 1. The OpenEEW Provisioning app ends with a Thank You message.
 <table><tr><td>
 <p align="center">
