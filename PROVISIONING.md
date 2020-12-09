@@ -48,10 +48,10 @@ When they press the Register button, the data is posted to a http restful endpoi
 <img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-EnterWiFiCreds.png">
 </p>
 </td></tr></table>
-2. Mobile App broadcasts the WiFi credentials via the
-[SmartConfig protocol](https://community.particle.io/t/smart-config-the-missing-manual-now-available/442). The debug console of the Mobile app might look like this:
 
-```bash
+2. Mobile App broadcasts the WiFi credentials via the [SmartConfig protocol](https://community.particle.io/t/smart-config-the-missing-manual-now-available/442). The debug console of the Mobile app might look like this:
+
+```
 I/ViewRootImpl@6d1eac9[MainActivity](16389): ViewPostIme pointer 1
 D/smartconfig(16389): ssid wynd565o:pass SecretWiFiPasswordHere
 D/smartconfig(16389): Begin task
@@ -105,7 +105,7 @@ D/InputMethodManager(16389): HSIFW - flag : 0
 ```
 3. OpenEEW sensor board powers up, reads its NVRAM, finds no wifi credentials it can connect to, starts to listen for [SmartConfig encrypted frames](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp_smartconfig.html) on the network. The serial monitor might look like this.
 
-```bash
+```
 --- Miniterm on /dev/ttyUSB0  115200,8,N,1 ---
 --- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---
 Jun  8 2016 00:22:57
@@ -139,7 +139,7 @@ ESP32 soft-AP stop
 ..............
 ```
 4. OpenEEW sensor receives the WiFi credentials and replies by sending its mac address and IP address to the OpenEEW provisioning mobile app (which can be observed in the mobile app debug log above.)
-```bash
+```
 Waiting for SmartConfig.
 ESP32 soft-AP stop
 ESP32 soft-AP stop
@@ -161,7 +161,7 @@ ETH  MAC: 24:6F:28:CC:E8:8F
 ETH Started
 ```
 5. OpenEEW sensor does an http post to the /activation restful endpoint and sends its mac address and firmware version.
-```bash
+```
 Waiting for time
 .Time sync'd
 Wed Dec  9 12:04:35 2020
@@ -170,7 +170,7 @@ https://openeew-devicemgmt.mybluemix.net/activation?ver=1
 Sending Device Activation : {"macaddress":"246F28CCE88C","firmware_device":"1.2.0"}
 ```
 6. Node-RED endpoint receives the data and replies with the MQTT broker details, firmware update details (latest version and url)
-```bash
+```
 HTTP Response code: 200
 HTTP post response payload: {"org":"7p7xwk","firmware_latest":"1.2.0","firmware_ota_url":"https://openeew-devicemgmt.mybluemix.net/firmware/firmware-1.2.0.bin"}
 OpenEEW Device Activation directs MQTT data from this sensor to :7p7xwk
