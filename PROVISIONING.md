@@ -50,6 +50,7 @@ When they press the Register button, the data is posted to a http restful endpoi
 </td></tr></table>
 1. Mobile App broadcasts the WiFi credentials via the
 [SmartConfig protocol](https://community.particle.io/t/smart-config-the-missing-manual-now-available/442). The debug console of the Mobile app might look like this:
+
 ```bash
 I/ViewRootImpl@6d1eac9[MainActivity](16389): ViewPostIme pointer 1
 D/smartconfig(16389): ssid wynd565o:pass SecretWiFiPasswordHere
@@ -102,7 +103,7 @@ I/flutter (16389): {246f28cce88c: 192.168.1.245}
 I/flutter (16389): 246f28cce88c
 D/InputMethodManager(16389): HSIFW - flag : 0
 ```
-1. OpenEEW sensor board powers up, reads its NVRAM, finds no wifi credentials it can connect to, starts to listen for [SmartConfig encrypted frames](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp_smartconfig.html) on the network. The serial monitor might look like this.
+3. OpenEEW sensor board powers up, reads its NVRAM, finds no wifi credentials it can connect to, starts to listen for [SmartConfig encrypted frames](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp_smartconfig.html) on the network. The serial monitor might look like this.
 
 ```bash
 --- Miniterm on /dev/ttyUSB0  115200,8,N,1 ---
@@ -197,11 +198,11 @@ When they press the **Register** button, the data is posted to a http restful en
 </p>
 </td></tr></table>
 1. Node-RED /OpenEEWRegistration endpoint receives the user information from the mobile app. See second section of the Node-RED flow.
-![Node-RED flow which adds user registration details to Cloudant DB](images/Node-RED-Registration-Endpoint-flow.png)
+![Node-RED flow which adds user registration details to Cloudant DB](./images/Node-RED-Registration-Endpoint-flow.png)
 1. Node-RED searches the Cloudant database for this mac address. It then adds or updates the Cloudant record with the user data. See third section of the Node-RED flow.
-![Node-RED flow which adds user registration details to Cloudant DB](images/Node-RED-Registration-Endpoint-CloudantAdd.png)
+![Node-RED flow which adds user registration details to Cloudant DB](./images/Node-RED-Registration-Endpoint-CloudantAdd.png)
 1. Merged record is available in the Cloudant database, indexed by mac address.  Note that either Step 8 or 11 can occur first. Order is not important.
-![Cloudant DB record](images/OpenEEW-Devices-CloudantDB-record.png)
+![Cloudant DB record](./images/OpenEEW-Devices-CloudantDB-record.png)
 1. The OpenEEW Provisioning app ends with a Thank You message.
 <table><tr><td>
 <p align="center">
