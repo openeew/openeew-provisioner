@@ -48,7 +48,7 @@ When they press the Register button, the data is posted to a http restful endpoi
 <img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-EnterWiFiCreds.png">
 </p>
 </td></tr></table>
-1. Mobile App broadcasts the WiFi credentials via the
+2. Mobile App broadcasts the WiFi credentials via the
 [SmartConfig protocol](https://community.particle.io/t/smart-config-the-missing-manual-now-available/442). The debug console of the Mobile app might look like this:
 
 ```bash
@@ -213,6 +213,6 @@ When they press the **Register** button, the data is posted to a http restful en
 13. The OpenEEW Provisioning app ends with a Thank You message.
 <table><tr><td>
 <p align="center">
-<img width="25%" height="25%" src="./images/OpenEEW-Provisioning-App-ThankYou.png">
+<img width="40%" height="40%" src="./images/OpenEEW-Provisioning-App-ThankYou.png">
 </p>
 </td></table>
