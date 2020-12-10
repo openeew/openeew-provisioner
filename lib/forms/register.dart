@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 
 import 'package:openeew_provisioner/templates/step.dart';
@@ -10,7 +8,7 @@ import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/info_field.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:openeew_provisioner/operations/perform_device_registration_request.dart';
 
 class RegisterForm extends StatefulWidget {
   final Function callback;
@@ -26,29 +24,24 @@ class RegisterForm extends StatefulWidget {
 
 class RegisterFormState extends State<RegisterForm> {
   bool _sendEmail = true;
+  bool _loading = false;
   final Map state;
 
   RegisterFormState(this.state);
 
-  void submit(BuildContext context) {
-    if( state['macaddress'] != "" ) {
-      // Only send the registration data if SmartConfig connected
-      // successfully with a sensor and received a Mac Address
-      sendRegistration();
-    }
+  void submit(BuildContext context) async {
+    setState(() { _loading = true; });
+    int result = await PerformDeviceRegistrationRequest({ 'state': this.state }).perform();
+    setState(() { _loading = false; });
 
-    if(_sendEmail) {
-      // TODO: send email to user
-    }
+    if (result == 200) {
+      if (_sendEmail) {
+        // TODO: send email to user
+      }
 
-    widget.callback();
-  }
-
-  Future<void> sendRegistration() async {
-    var response = await http.post(DotEnv().env['ENDPOINT_URL'], body: jsonEncode(this.state));
-
-    if (response.statusCode != 200) {
-      throw Exception('Failed to register user.');
+      widget.callback();
+    } else {
+      // TODO: handle exception
     }
   }
 
@@ -106,7 +99,7 @@ class RegisterFormState extends State<RegisterForm> {
       Space(20),
       Divider(),
       Space(20),
-      NextButton(onClick: submit, text: 'Register'),
+      NextButton(onClick: submit, text: 'Register', loading: this._loading),
       Space(20),
     ]);
   }
