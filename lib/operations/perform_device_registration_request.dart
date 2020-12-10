@@ -11,7 +11,10 @@ class PerformDeviceRegistrationRequest extends AsyncPlatformOperation {
 
   @override
   Future<int> web() {
-    return Future<int>.delayed(Duration(seconds : 3), () => 200);
+    return Future<int>.delayed(
+      Duration(seconds : 3),
+      () => 200
+    );
   }
 
   @override

@@ -4,6 +4,7 @@ import 'package:openeew_provisioner/templates/step.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
+import 'package:openeew_provisioner/widgets/error_message.dart';
 
 import 'package:openeew_provisioner/operations/perform_user_registration_request.dart';
 
@@ -25,10 +26,14 @@ class ContactFormState extends State<ContactForm> {
   String _lastName = '';
   String _email = '';
   bool _loading = false;
+  bool _error = false;
 
   void submit(BuildContext context) async {
     if (_formKey.currentState.validate()) {
-      setState(() { _loading = true; });
+      setState(() {
+        _loading = true;
+        _error = false;
+      });
 
       int result = await PerformUserRegistrationRequest({
         'firstName': _firstName,
@@ -36,14 +41,17 @@ class ContactFormState extends State<ContactForm> {
         'email': _email
       }).perform();
 
-      if (result == 200) {
+      setState(() {
+        _loading = false;
+        _error = result != 200;
+      });
+
+      if (!_error) {
         widget.callback({
           'first_name': _firstName,
           'last_name': _lastName,
           'email': _email,
         });
-      } else {
-        // TODO: handle exception
       }
     }
   }
@@ -74,7 +82,10 @@ class ContactFormState extends State<ContactForm> {
             onChanged: (value) => setState(() { _email = value; }),
           ),
           Space(20),
-          NextButton(onClick: submit, text: 'Submit', loading: this._loading)
+          NextButton(onClick: submit, text: 'Submit', loading: this._loading),
+          Space(20),
+          ErrorMessage(this._error, "Sorry, we weren't able to register your contact details. Please try again."),
+          Space(20)
         ],
       ),
     );

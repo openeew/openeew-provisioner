@@ -5,6 +5,7 @@ import 'package:openeew_provisioner/templates/step.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
+import 'package:openeew_provisioner/widgets/error_message.dart';
 
 import 'package:openeew_provisioner/operations/perform_permission_request.dart';
 import 'package:openeew_provisioner/operations/perform_position_request.dart';
@@ -137,11 +138,8 @@ class WifiFormState extends State<WifiForm> {
           Space(20),
           NextButton(onClick: submit, text: 'Send WiFi to OpenEEW sensor', loading: this._loading),
           Space(20),
-          this._error ? Text(
-            'Sorry, something went wrong. Please ensure your device is connected and try again.',
-            style: TextStyle(color: Colors.red),
-            textAlign: TextAlign.center,
-          ) : Text('')
+          ErrorMessage(this._error, 'Sorry, something went wrong. Please ensure your device is connected and try again.'),
+          Space(20)
         ],
       ),
     );

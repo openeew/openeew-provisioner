@@ -7,6 +7,7 @@ import 'package:openeew_provisioner/templates/step.dart';
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/info_field.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
+import 'package:openeew_provisioner/widgets/error_message.dart';
 
 import 'package:openeew_provisioner/operations/perform_device_registration_request.dart';
 
@@ -25,23 +26,30 @@ class RegisterForm extends StatefulWidget {
 class RegisterFormState extends State<RegisterForm> {
   bool _sendEmail = true;
   bool _loading = false;
+  bool _error = false;
   final Map state;
 
   RegisterFormState(this.state);
 
   void submit(BuildContext context) async {
-    setState(() { _loading = true; });
-    int result = await PerformDeviceRegistrationRequest({ 'state': this.state }).perform();
-    setState(() { _loading = false; });
+    setState(() {
+      _loading = true;
+      _error = false;
+    });
 
-    if (result == 200) {
+    int result = await PerformDeviceRegistrationRequest({ 'state': this.state }).perform();
+
+    setState(() {
+      _loading = false;
+      _error = result != 200;
+    });
+
+    if (!_error) {
       if (_sendEmail) {
         // TODO: send email to user
       }
 
       widget.callback();
-    } else {
-      // TODO: handle exception
     }
   }
 
@@ -101,6 +109,8 @@ class RegisterFormState extends State<RegisterForm> {
       Space(20),
       NextButton(onClick: submit, text: 'Register', loading: this._loading),
       Space(20),
+      ErrorMessage(this._error, "Sorry, we weren't able to register your device. Please try again."),
+      Space(20)
     ]);
   }
 }
