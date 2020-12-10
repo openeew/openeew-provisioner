@@ -38,7 +38,7 @@ class WifiFormState extends State<WifiForm> {
     if (formKey.currentState.validate()) {
       setState(() { _loading = true; });
 
-      String _macaddress = await PerformSmartconfigRequest({
+      String result = await PerformSmartconfigRequest({
         'ssid': _ssid,
         'bssid': _bssid,
         'password': _password,
@@ -46,13 +46,17 @@ class WifiFormState extends State<WifiForm> {
 
       setState(() { _loading = false; });
 
-      widget.callback({
-        'macaddress': _macaddress,
-        'latitude': _latitude,
-        'longitude': _longitude,
-        'city': _city,
-        'country': _country,
-      });
+      if (result != "") {
+        widget.callback({
+          'macaddress': result,
+          'latitude': _latitude,
+          'longitude': _longitude,
+          'city': _city,
+          'country': _country,
+        });
+      } else {
+        // TODO: handle exception
+      }
     }
   }
 
