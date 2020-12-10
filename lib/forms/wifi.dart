@@ -5,6 +5,7 @@ import 'package:openeew_provisioner/templates/step.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
+import 'package:openeew_provisioner/widgets/error_message.dart';
 
 import 'package:openeew_provisioner/operations/perform_permission_request.dart';
 import 'package:openeew_provisioner/operations/perform_position_request.dart';
@@ -32,26 +33,36 @@ class WifiFormState extends State<WifiForm> {
   String _city;
   String _country;
   String _mac;
+  bool _error = false;
+  bool _loading = false;
 
   void submit(BuildContext context) async {
     if (formKey.currentState.validate()) {
-      String _macaddress = await PerformSmartconfigRequest({
+      setState(() {
+        _loading = true;
+        _error = false;
+      });
+
+      String result = await PerformSmartconfigRequest({
         'ssid': _ssid,
         'bssid': _bssid,
         'password': _password,
       }).perform();
 
-      if ( _macaddress == null ) {
-        // SmartConfig failed / timed out
-        _macaddress = "";
-      }
-      widget.callback({
-        'macaddress': _macaddress,
-        'latitude': _latitude,
-        'longitude': _longitude,
-        'city': _city,
-        'country': _country,
+      setState(() {
+        _loading = false;
+        _error = result == "";
       });
+
+      if (!_error) {
+        widget.callback({
+          'macaddress': result,
+          'latitude': _latitude,
+          'longitude': _longitude,
+          'city': _city,
+          'country': _country,
+        });
+      }
     }
   }
 
@@ -125,7 +136,10 @@ class WifiFormState extends State<WifiForm> {
             onChanged: (value) => setState(() { _password = value; }),
           ),
           Space(20),
-          NextButton(onClick: submit, text: 'Send WiFi to OpenEEW sensor')
+          NextButton(onClick: submit, text: 'Send WiFi to OpenEEW sensor', loading: this._loading),
+          Space(20),
+          ErrorMessage(this._error, 'Sorry, something went wrong. Please ensure your device is connected and try again.'),
+          Space(20)
         ],
       ),
     );
