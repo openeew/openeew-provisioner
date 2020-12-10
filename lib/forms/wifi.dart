@@ -32,11 +32,15 @@ class WifiFormState extends State<WifiForm> {
   String _city;
   String _country;
   String _mac;
+  bool _error = false;
   bool _loading = false;
 
   void submit(BuildContext context) async {
     if (formKey.currentState.validate()) {
-      setState(() { _loading = true; });
+      setState(() {
+        _loading = true;
+        _error = false;
+      });
 
       String result = await PerformSmartconfigRequest({
         'ssid': _ssid,
@@ -44,9 +48,12 @@ class WifiFormState extends State<WifiForm> {
         'password': _password,
       }).perform();
 
-      setState(() { _loading = false; });
+      setState(() {
+        _loading = false;
+        _error = result == "";
+      });
 
-      if (result != "") {
+      if (!_error) {
         widget.callback({
           'macaddress': result,
           'latitude': _latitude,
@@ -54,8 +61,6 @@ class WifiFormState extends State<WifiForm> {
           'city': _city,
           'country': _country,
         });
-      } else {
-        // TODO: handle exception
       }
     }
   }
@@ -130,7 +135,13 @@ class WifiFormState extends State<WifiForm> {
             onChanged: (value) => setState(() { _password = value; }),
           ),
           Space(20),
-          NextButton(onClick: submit, text: 'Send WiFi to OpenEEW sensor', loading: this._loading)
+          NextButton(onClick: submit, text: 'Send WiFi to OpenEEW sensor', loading: this._loading),
+          Space(20),
+          this._error ? Text(
+            'Sorry, something went wrong. Please ensure your device is connected and try again.',
+            style: TextStyle(color: Colors.red),
+            textAlign: TextAlign.center,
+          ) : Text('')
         ],
       ),
     );
