@@ -18,10 +18,17 @@ class PerformSmartconfigRequest extends AsyncPlatformOperation {
 
   @override
   Future<String> fallback() async {
-    Map<String, List<String>> result = await Smartconfig.start(this.args['ssid'], this.args['bssid'], this.args['password']);
+    Map<String, dynamic> result = await Smartconfig.start(this.args['ssid'], this.args['bssid'], this.args['password']);
 
     if (result != null) {
-      return Future<String>.value(result.entries.toList().first.toString());
+      // returns {246f28cce88c: 192.168.1.246}
+      debugPrint(result.toString());
+
+      // Grab the first key in the Map Iterable:
+      var _list = result.entries.toList();
+      String response = _list[0].key;  // first key is the mac address
+      debugPrint(response);
+      return Future<String>.value(response);
     } else {
       return Future<String>.value("");
     }

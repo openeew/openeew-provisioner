@@ -6,11 +6,37 @@ The OpenEEW Provisioning application helps enable an OpenEEW sensor:
 - This Android application prompts you for your WiFi SSID and password and sends it to the OpenEEW device via SmartConfig.
 - It also asks you to register your new OpenEEW device so you can view earthquake accelerometer data in the cloud.
 
-## Authors
-- [James Kiesel](http://github.com/gdpelican)
-- [John Walicki](https://github.com/johnwalicki/)
+<table><tr><td>
+<p align="center">
+<img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-Get-Started.png">
+</p>
+</td><td>
+<p align="center">
+<img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-Connect2WiFi.png">
+</p>
+</td></tr>
+<tr><td>
+<p align="center">
+<img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-EnterWiFiCreds.png">
+</p>
+</td><td>
+<p align="center">
+<img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-EnterUserDetails.png">
+</p>
+</td></tr>
+<tr><td>
+<p align="center">
+<img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-Review-Register.png">
+</p>
+</td><td>
+<p align="center">
+<img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-ThankYou.png">
+</p>
+</td></tr></table>
 
-Enjoy! Give us [feedback](https://github.com/openeew/openeew-provisioner/issues) if you have suggestions on how to improve this information.
+## Authors
+  - [James Kiesel](http://github.com/gdpelican)
+  - [John Walicki](https://github.com/johnwalicki/)
 
 ## Configuration
 
@@ -26,19 +52,19 @@ In order to run it locally:
 - [Install Flutter](https://flutter.dev/docs/get-started/install) on your local machine
 
 - Get dependencies
-```
-flutter pub get
-```
+  ```
+  flutter pub get
+  ```
 - Ensure you have a device connected
-```
-flutter devices
-```
+  ```
+  flutter devices
+  ```
 _(NB this app will run in the web without a device, but due to the nature of the functionality, very little of it will work in the web environment.)_
 
 - Compile and run
-```
-flutter run
-```
+  ```
+  flutter run
+  ```
 
 ## Contributing and Developer information
 
