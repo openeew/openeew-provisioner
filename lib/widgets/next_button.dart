@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:openeew_provisioner/operations/perform_route.dart';
 
-import 'package:openeew_provisioner/widgets/button.dart';
+import 'package:openeew_provisioner/theme/carbon.dart';
 
 class NextButton extends StatelessWidget {
   final Widget route;
@@ -14,7 +14,7 @@ class NextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Button(text: this.text, onClick: () {
+    return CButton(label: this.text, onTap: () {
       if (this.onClick != null) {
         this.onClick(context);
       } else if (this.route != null) {

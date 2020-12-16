@@ -5,18 +5,18 @@ import 'package:openeew_provisioner/templates/step.dart';
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
 
-class ContactForm extends StatefulWidget {
+class UserForm extends StatefulWidget {
   final Function callback;
 
-  ContactForm({ Key key, this.callback }) : super(key: key);
+  UserForm({ Key key, this.callback }) : super(key: key);
 
   @override
-  ContactFormState createState() {
-    return ContactFormState();
+  UserFormState createState() {
+    return UserFormState();
   }
 }
 
-class ContactFormState extends State<ContactForm> {
+class UserFormState extends State<UserForm> {
   final _formKey = GlobalKey<FormState>();
 
   String _firstName = '';

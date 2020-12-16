@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:openeew_provisioner/steps/1_connect.dart';
+import 'package:openeew_provisioner/steps/1_user.dart';
 import 'package:openeew_provisioner/steps/2_wifi.dart';
-import 'package:openeew_provisioner/steps/3_contact.dart';
+import 'package:openeew_provisioner/steps/3_sensor.dart';
 import 'package:openeew_provisioner/steps/4_register.dart';
 import 'package:openeew_provisioner/steps/5_complete.dart';
 
@@ -21,7 +21,7 @@ class Steps extends StatefulWidget {
 
 class StepsState extends State<Steps> {
   final int maxSteps = 5;
-  var _step = StepMarker.connect;
+  var _step = StepMarker.user;
   Map _state = {};
 
   void setStep(value, state) {
@@ -34,9 +34,9 @@ class StepsState extends State<Steps> {
 
   int getStep() {
     switch(_step) {
-      case StepMarker.connect:  return 1;
+      case StepMarker.user:     return 1;
       case StepMarker.wifi:     return 2;
-      case StepMarker.contact:  return 3;
+      case StepMarker.sensor:   return 3;
       case StepMarker.register: return 4;
       case StepMarker.complete: return 5;
     }
@@ -44,9 +44,9 @@ class StepsState extends State<Steps> {
 
   Widget getWidget() {
     switch (_step) {
-      case StepMarker.connect:  return Connect(setStep, _state);
+      case StepMarker.user:     return User(setStep, _state);
       case StepMarker.wifi:     return Wifi(setStep, _state);
-      case StepMarker.contact:  return Contact(setStep, _state);
+      case StepMarker.sensor:   return Sensor(setStep, _state);
       case StepMarker.register: return Register(setStep, _state);
       case StepMarker.complete: return Complete(setStep, _state);
     }
@@ -61,7 +61,6 @@ class StepsState extends State<Steps> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Column(children: <Widget>[
-                StepProgress(getStep() / maxSteps),
                 Space(20),
                 Logo(0.75, false),
                 Space(60),

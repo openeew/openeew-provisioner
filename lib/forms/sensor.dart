@@ -11,18 +11,18 @@ import 'package:openeew_provisioner/operations/perform_position_request.dart';
 import 'package:openeew_provisioner/operations/perform_smartconfig_request.dart';
 import 'package:openeew_provisioner/operations/perform_wifi_request.dart';
 
-class WifiForm extends StatefulWidget {
+class SensorForm extends StatefulWidget {
   final Function callback;
 
-  WifiForm({ Key key, this.callback }) : super(key: key);
+  SensorForm({ Key key, this.callback }) : super(key: key);
 
   @override
-  WifiFormState createState() {
-    return WifiFormState();
+  DeviceForm createState() {
+    return DeviceForm();
   }
 }
 
-class WifiFormState extends State<WifiForm> {
+class DeviceForm extends State<SensorForm> {
   final formKey = GlobalKey<FormState>();
   String _ssid;
   String _bssid;
