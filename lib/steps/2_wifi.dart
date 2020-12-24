@@ -16,9 +16,9 @@ class Wifi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StepTemplate(<Widget>[
-      CText(data: 'To begin reporting, your sensor needs to connect to WiFi. Make sure your sensor is on and flashing a blue light.')
+      CText(data: 'To begin reporting, your sensor needs to connect to WiFi. Make sure your sensor is on and flashing a blue light.'),
       Space(20),
-      CText(data: '(After the initial setup, you can use ethernet if you prefer)')
+      CText(data: '(After the initial setup, you can use ethernet if you prefer)'),
       NextButton(
         onClick: (context) => setStep(StepMarker.sensor, {}),
         text: "Connect via WiFi",

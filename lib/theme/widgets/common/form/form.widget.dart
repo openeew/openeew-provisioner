@@ -37,6 +37,14 @@ class CForm extends StatefulWidget {
 }
 
 class CFormState extends State<CForm> {
+  final Map<String, CValidationResult> validations = {};
+
+  bool validate() {
+    return validations.values.every((validation) =>
+      validation != null && validation.type == CValidationResultType.success
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final carbon = context.style;

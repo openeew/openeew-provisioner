@@ -8,6 +8,7 @@ export './text-field.styles.dart';
 class CTextField extends StatefulWidget {
   const CTextField({
     Key key,
+    this.id,
     this.validator,
     this.label,
     this.hint,
@@ -40,6 +41,7 @@ class CTextField extends StatefulWidget {
     this.isRequired = false,
   }) : super(key: key);
 
+  final String id;
   final String label;
   final String hint;
   final String description;
@@ -169,6 +171,7 @@ class _CTextFieldState extends State<CTextField> {
     var cformType = '';
 
     if (cform != null) {
+      cform.validations[widget.id] = _validationResult;
       if (cform.widget.type == CFormType.modal)
         cformType = 'modalform-';
       else

@@ -8,7 +8,6 @@ import 'package:openeew_provisioner/steps/5_complete.dart';
 
 import 'package:openeew_provisioner/templates/step.dart';
 
-import 'package:openeew_provisioner/widgets/step_progress.dart';
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/logo.dart';
 

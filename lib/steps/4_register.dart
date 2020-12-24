@@ -12,7 +12,7 @@ class Register extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StepTemplate("Register your device on the OpenEEW network", <Widget>[
+    return StepTemplate(<Widget>[
       RegisterForm(state: this.state, callback: () => setStep(StepMarker.complete, {}))
     ]);
   }

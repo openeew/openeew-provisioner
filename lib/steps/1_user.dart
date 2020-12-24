@@ -12,7 +12,7 @@ class User extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StepTemplate("What's the best way for OpenEEW to contact you about this device?", <Widget>[
+    return StepTemplate(<Widget>[
       UserForm(callback: (state) => setStep(StepMarker.wifi, state))
     ]);
   }

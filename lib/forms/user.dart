@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:openeew_provisioner/theme/carbon.dart';
 
 import 'package:openeew_provisioner/templates/step.dart';
 
@@ -17,15 +18,13 @@ class UserForm extends StatefulWidget {
 }
 
 class UserFormState extends State<UserForm> {
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<CFormState>();
 
   String _firstName = '';
   String _lastName = '';
   String _email = '';
 
   void submit(BuildContext context) {
-    // TODO: create / verify user account
-
     if (_formKey.currentState.validate()) {
       widget.callback({
         'first_name': _firstName,
@@ -35,29 +34,41 @@ class UserFormState extends State<UserForm> {
     }
   }
 
+  CValidationResult validatePresence(String value, String message) {
+    return value.isEmpty
+      ? CValidationResult(type: CValidationResultType.error, message: message)
+      : CValidationResult(type: CValidationResultType.success, message: '');
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Form(
+    return CForm(
       key: _formKey,
-      child: Column(
+      content: Column(
         children: <Widget>[
           Row(children: <Widget>[
-            Expanded(flex: 8, child: TextFormField(
-              decoration: InputDecoration(labelText: 'First name'),
-              validator: (value) => (value == null || value.isEmpty) ? 'First name is required' : null,
+            Expanded(flex: 8, child: CTextField(
+              id: 'firstName',
+              validator: (value) => validatePresence(value, 'First name is required'),
+              label: 'First name',
+              hint: 'Beth',
               onChanged: (value) => setState(() { _firstName = value; }),
             )),
             Expanded(flex: 1, child: Container()),
-            Expanded(flex: 8, child: TextFormField(
-              decoration: InputDecoration(labelText: 'Last name'),
-              validator: (value) => (value == null || value.isEmpty) ? 'Last name is required' : null,
+            Expanded(flex: 8, child: CTextField(
+              id: 'lastName',
+              validator: (value) => validatePresence(value, 'Last name is required'),
+              label: 'Last name',
+              hint: 'Harmon',
               onChanged: (value) => setState(() { _lastName = value; }),
             )),
           ]),
           Space(20),
-          TextFormField(
-            decoration: InputDecoration(labelText: 'Contact email'),
-            validator: (value) => (value == null || value.isEmpty) ? 'Contact email is required' : null,
+          CTextField(
+            id: 'email',
+            validator: (value) => validatePresence(value, 'Contact email is required'),
+            label: 'Contact email',
+            hint: 'you@example.com',
             onChanged: (value) => setState(() { _email = value; }),
           ),
           Space(20),

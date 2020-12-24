@@ -12,7 +12,7 @@ class Sensor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StepTemplate('Enter your credentials to enable internet on the sensor', <Widget>[
+    return StepTemplate(<Widget>[
       SensorForm(callback: (state) {
         setStep(StepMarker.register, state);
       })
