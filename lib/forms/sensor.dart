@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:openeew_provisioner/templates/step.dart';
+import 'package:openeew_provisioner/theme/carbon.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
@@ -17,13 +17,13 @@ class SensorForm extends StatefulWidget {
   SensorForm({ Key key, this.callback }) : super(key: key);
 
   @override
-  DeviceForm createState() {
-    return DeviceForm();
+  SensorFormState createState() {
+    return SensorFormState();
   }
 }
 
-class DeviceForm extends State<SensorForm> {
-  final formKey = GlobalKey<FormState>();
+class SensorFormState extends State<SensorForm> {
+  final _formKey = GlobalKey<CFormState>();
   String _ssid;
   String _bssid;
   String _password;
@@ -34,7 +34,7 @@ class DeviceForm extends State<SensorForm> {
   String _mac;
 
   void submit(BuildContext context) async {
-    if (formKey.currentState.validate()) {
+    if (_formKey.currentState.validate()) {
       String _macaddress = await PerformSmartconfigRequest({
         'ssid': _ssid,
         'bssid': _bssid,
@@ -98,30 +98,26 @@ class DeviceForm extends State<SensorForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Column(
+    return CForm(
+      key: _formKey,
+      content: Column(
         children: <Widget>[
-          TextFormField(
+          CTextField(
+            validator: (value) => _formKey.currentState.validatePresence(value, 'Please connect to a WiFi network'),
             enabled: false,
             controller: TextEditingController(text: _ssid),
-            decoration: InputDecoration(
-              icon: Icon(Icons.wifi_outlined),
-              hintText: 'Your WiFi network',
-              labelText: 'SSID',
-            ),
-            validator: (value) => (value == null || value.isEmpty) ? 'Please connect to a Wifi network' : null,
+            prefixIcon: Icon(Icons.wifi_outlined),
+            hint: 'Your WiFi network',
+            label: 'SSID',
           ),
           Space(20),
-          TextFormField(
+          CTextField(
+            validator: (value) => _formKey.currentState.validatePresence(value, 'WiFi password is required'),
             obscureText: true,
-            decoration: InputDecoration(
-              icon: Icon(Icons.lock_outlined),
-              hintText: 'Your WiFi password',
-              labelText: 'Password',
-              helperText: "We won't store or send this information anywhere"
-            ),
-            validator: (value) => (value == null || value.isEmpty) ? 'Wifi password is required' : null,
+            prefixIcon: Icon(Icons.lock_outlined),
+            hint: 'Your WiFi password',
+            label: 'Password',
+            description: "We won't store or send this information anywhere",
             onChanged: (value) => setState(() { _password = value; }),
           ),
           Space(20),

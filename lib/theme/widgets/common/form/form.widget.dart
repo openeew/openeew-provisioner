@@ -45,6 +45,12 @@ class CFormState extends State<CForm> {
     );
   }
 
+  CValidationResult validatePresence(String value, String message) {
+    return value.isEmpty
+      ? CValidationResult(type: CValidationResultType.error, message: message)
+      : CValidationResult(type: CValidationResultType.success, message: '');
+  }
+
   @override
   Widget build(BuildContext context) {
     final carbon = context.style;

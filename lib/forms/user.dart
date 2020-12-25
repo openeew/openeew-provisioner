@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:openeew_provisioner/theme/carbon.dart';
 
-import 'package:openeew_provisioner/templates/step.dart';
-
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
 
@@ -34,12 +32,6 @@ class UserFormState extends State<UserForm> {
     }
   }
 
-  CValidationResult validatePresence(String value, String message) {
-    return value.isEmpty
-      ? CValidationResult(type: CValidationResultType.error, message: message)
-      : CValidationResult(type: CValidationResultType.success, message: '');
-  }
-
   @override
   Widget build(BuildContext context) {
     return CForm(
@@ -49,7 +41,7 @@ class UserFormState extends State<UserForm> {
           Row(children: <Widget>[
             Expanded(flex: 8, child: CTextField(
               id: 'firstName',
-              validator: (value) => validatePresence(value, 'First name is required'),
+              validator: (value) => _formKey.currentState.validatePresence(value, 'First name is required'),
               label: 'First name',
               hint: 'Beth',
               onChanged: (value) => setState(() { _firstName = value; }),
@@ -57,7 +49,7 @@ class UserFormState extends State<UserForm> {
             Expanded(flex: 1, child: Container()),
             Expanded(flex: 8, child: CTextField(
               id: 'lastName',
-              validator: (value) => validatePresence(value, 'Last name is required'),
+              validator: (value) => _formKey.currentState.validatePresence(value, 'Last name is required'),
               label: 'Last name',
               hint: 'Harmon',
               onChanged: (value) => setState(() { _lastName = value; }),
@@ -66,7 +58,7 @@ class UserFormState extends State<UserForm> {
           Space(20),
           CTextField(
             id: 'email',
-            validator: (value) => validatePresence(value, 'Contact email is required'),
+            validator: (value) => _formKey.currentState.validatePresence(value, 'Contact email is required'),
             label: 'Contact email',
             hint: 'you@example.com',
             onChanged: (value) => setState(() { _email = value; }),

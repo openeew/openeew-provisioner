@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 
-import 'package:openeew_provisioner/templates/step.dart';
-
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/info_field.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';

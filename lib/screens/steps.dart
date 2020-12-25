@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'package:openeew_provisioner/theme/carbon.dart';
+
 import 'package:openeew_provisioner/steps/1_user.dart';
 import 'package:openeew_provisioner/steps/2_wifi.dart';
 import 'package:openeew_provisioner/steps/3_sensor.dart';
 import 'package:openeew_provisioner/steps/4_register.dart';
 import 'package:openeew_provisioner/steps/5_complete.dart';
 
-import 'package:openeew_provisioner/templates/step.dart';
-
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/logo.dart';
+
+enum StepMarker { user, wifi, sensor, register, complete }
 
 class Steps extends StatefulWidget {
   @override
@@ -31,16 +33,6 @@ class StepsState extends State<Steps> {
     });
   }
 
-  int getStep() {
-    switch(_step) {
-      case StepMarker.user:     return 1;
-      case StepMarker.wifi:     return 2;
-      case StepMarker.sensor:   return 3;
-      case StepMarker.register: return 4;
-      case StepMarker.complete: return 5;
-    }
-  }
-
   Widget getWidget() {
     switch (_step) {
       case StepMarker.user:     return User(setStep, _state);
@@ -56,16 +48,20 @@ class StepsState extends State<Steps> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Column(children: <Widget>[
-                Space(20),
-                Logo(0.75, false),
-                Space(60),
-              ]),
-              getWidget(),
-            ],
+          child: Container(
+            constraints: BoxConstraints(maxWidth: 400),
+            child: Column(
+              children: <Widget>[
+                Row(children: <Widget>[
+                  Logo(0.75, false),
+                  Space(40),
+                  CText(data: 'OpenEEW'),
+                  Space(40),
+                  CText(data: 'Sensors'),
+                ]),
+                getWidget(),
+              ]
+            ),
           ),
         ),
       ),

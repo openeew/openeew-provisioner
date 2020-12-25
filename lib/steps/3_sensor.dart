@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:openeew_provisioner/forms/sensor.dart';
+import 'package:openeew_provisioner/screens/steps.dart';
 
-import 'package:openeew_provisioner/templates/step.dart';
+import 'package:openeew_provisioner/forms/sensor.dart';
 
 class Sensor extends StatelessWidget {
   final Function setStep;
@@ -12,10 +12,6 @@ class Sensor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StepTemplate(<Widget>[
-      SensorForm(callback: (state) {
-        setStep(StepMarker.register, state);
-      })
-    ]);
+    return SensorForm(callback: (state) => setStep(StepMarker.register, state));
   }
 }
