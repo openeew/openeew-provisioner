@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:openeew_provisioner/theme/carbon.dart';
 
+import 'package:openeew_provisioner/operations/perform_user_registration_request.dart';
+
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/horizontal_space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
@@ -19,14 +21,33 @@ class UserForm extends StatefulWidget {
 class UserFormState extends State<UserForm> {
   final _formKey = GlobalKey<CFormState>();
 
+  bool _loading = false;
+  bool _error = false;
   bool _newUser = true;
   String _firstName = '';
   String _lastName = '';
   String _email = '';
   String _password = '';
 
-  void submit(BuildContext context) {
+  void submit(BuildContext context) async {
     if (_formKey.currentState.validate()) {
+      setState(() {
+        _loading = true;
+        _error = false;
+      });
+
+      int result = await PerformUserRegistrationRequest({
+        'first_name': _firstName,
+        'last_name': _lastName,
+        'email': _email,
+        'password': _password,
+      }).perform();
+
+      setState(() {
+        _loading = false;
+        _error = result != 200;
+      });
+
       widget.callback({
         'first_name': _firstName,
         'last_name': _lastName,
@@ -79,7 +100,7 @@ class UserFormState extends State<UserForm> {
             obscureText: true,
           ),
           Space(20),
-          NextButton(onClick: submit, text: 'Submit'),
+          NextButton(onClick: submit, text: 'Submit', loading: this._loading),
           Space(20),
           Row(children: <Widget>[
             CText(data: _newUser ? 'Already have an account?' : 'First time here?'),
