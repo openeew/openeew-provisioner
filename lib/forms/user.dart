@@ -18,9 +18,11 @@ class UserForm extends StatefulWidget {
 class UserFormState extends State<UserForm> {
   final _formKey = GlobalKey<CFormState>();
 
+  bool _newUser = true;
   String _firstName = '';
   String _lastName = '';
   String _email = '';
+  String _password = '';
 
   void submit(BuildContext context) {
     if (_formKey.currentState.validate()) {
@@ -28,6 +30,7 @@ class UserFormState extends State<UserForm> {
         'first_name': _firstName,
         'last_name': _lastName,
         'email': _email,
+        'password': _password,
       });
     }
   }
@@ -36,25 +39,28 @@ class UserFormState extends State<UserForm> {
   Widget build(BuildContext context) {
     return CForm(
       key: _formKey,
+      title: _newUser ? 'Create an account' : 'Sign in',
       content: Column(
         children: <Widget>[
-          Row(children: <Widget>[
-            Expanded(flex: 8, child: CTextField(
-              id: 'firstName',
-              validator: (value) => _formKey.currentState.validatePresence(value, 'First name is required'),
-              label: 'First name',
-              hint: 'Beth',
-              onChanged: (value) => setState(() { _firstName = value; }),
-            )),
-            Expanded(flex: 1, child: Container()),
-            Expanded(flex: 8, child: CTextField(
-              id: 'lastName',
-              validator: (value) => _formKey.currentState.validatePresence(value, 'Last name is required'),
-              label: 'Last name',
-              hint: 'Harmon',
-              onChanged: (value) => setState(() { _lastName = value; }),
-            )),
-          ]),
+          _newUser ? (
+            Row(children: <Widget>[
+              Expanded(flex: 8, child: CTextField(
+                id: 'firstName',
+                validator: (value) => _formKey.currentState.validatePresence(value, 'First name is required'),
+                label: 'First name',
+                hint: 'Beth',
+                onChanged: (value) => setState(() { _firstName = value; }),
+              )),
+              Expanded(flex: 1, child: Container()),
+              Expanded(flex: 8, child: CTextField(
+                id: 'lastName',
+                validator: (value) => _formKey.currentState.validatePresence(value, 'Last name is required'),
+                label: 'Last name',
+                hint: 'Harmon',
+                onChanged: (value) => setState(() { _lastName = value; }),
+              )),
+            ])
+          ) : CText(data: ''),
           Space(20),
           CTextField(
             id: 'email',
@@ -64,7 +70,23 @@ class UserFormState extends State<UserForm> {
             onChanged: (value) => setState(() { _email = value; }),
           ),
           Space(20),
-          NextButton(onClick: submit, text: 'Submit')
+          CTextField(
+            id: 'password',
+            validator: (value) => _formKey.currentState.validatePresence(value, 'Password is required'),
+            label: 'Password',
+            onChanged: (value) => setState(() { _password = value; }),
+            obscureText: true,
+          ),
+          Space(20),
+          NextButton(onClick: submit, text: 'Submit'),
+          Space(20),
+          Row(children: <Widget>[
+            CText(data: _newUser ? 'Already have an account?' : 'First time here?'),
+            CLink(
+              url: _newUser ? 'Sign in' : 'Create an account',
+              onTap: (event) => { setState(() { _newUser = !_newUser; }) }
+            )
+          ])
         ],
       ),
     );
