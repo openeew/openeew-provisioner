@@ -4,7 +4,7 @@ import 'package:openeew_provisioner/theme/carbon.dart';
 
 import 'package:openeew_provisioner/steps/1_user.dart';
 import 'package:openeew_provisioner/steps/2_sensor.dart';
-import 'package:openeew_provisioner/steps/3_register.dart';
+import 'package:openeew_provisioner/steps/3_onboard.dart';
 import 'package:openeew_provisioner/steps/4_complete.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';

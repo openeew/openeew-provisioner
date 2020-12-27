@@ -5,9 +5,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:openeew_provisioner/operations/async_platform_operation.dart';
 
-class PerformDeviceRegistrationRequest extends AsyncPlatformOperation {
+class PerformOnboardRequest extends AsyncPlatformOperation {
 
-  PerformDeviceRegistrationRequest(Map args) : super(args);
+  PerformOnboardRequest(Map args) : super(args);
 
   @override
   Future<int> web() {
@@ -20,7 +20,7 @@ class PerformDeviceRegistrationRequest extends AsyncPlatformOperation {
   @override
   Future<int> fallback() async {
     var response = await http.post(
-      DotEnv().env['DEVICE_ENDPOINT_URL'],
+      DotEnv().env['ONBOARD_ENDPOINT_URL'],
       body: jsonEncode(this.args['state'])
     );
 

@@ -137,7 +137,16 @@ class SensorFormState extends State<SensorForm> {
             ],
           ),
           actions: NextButton(onClick: submit, text: 'Share WiFi credentials', loading: this._loading)
-        )
+        ),
+        Space(40),
+        RichText(
+          text: TextSpan(
+            style: DefaultTextStyle.of(context).style,
+            children: <TextSpan>[
+              TextSpan(text: "Note: After the initial step, you can onboard devices via ethernet if you prefer.")
+            ]
+          )
+        ),
       ]
     );
   }

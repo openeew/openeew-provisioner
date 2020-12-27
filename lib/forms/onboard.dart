@@ -9,7 +9,7 @@ import 'package:openeew_provisioner/widgets/info_field.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
 import 'package:openeew_provisioner/widgets/error_message.dart';
 
-import 'package:openeew_provisioner/operations/perform_device_registration_request.dart';
+import 'package:openeew_provisioner/operations/perform_onboard_request.dart';
 
 class RegisterForm extends StatefulWidget {
   final Function callback;
@@ -37,7 +37,7 @@ class RegisterFormState extends State<RegisterForm> {
       _error = false;
     });
 
-    int result = await PerformDeviceRegistrationRequest({ 'state': this.state }).perform();
+    int result = await PerformOnboardRequest({ 'state': this.state }).perform();
 
     setState(() {
       _loading = false;
