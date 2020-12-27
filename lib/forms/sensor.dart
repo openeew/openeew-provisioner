@@ -108,32 +108,37 @@ class SensorFormState extends State<SensorForm> {
 
   @override
   Widget build(BuildContext context) {
-    return CForm(
-      key: _formKey,
-      content: Column(
-        children: <Widget>[
-          CTextField(
-            validator: (value) => _formKey.currentState.validatePresence(value, 'Please connect to a WiFi network'),
-            readOnly: true,
-            controller: TextEditingController(text: _ssid),
-            prefixIcon: Icon(Icons.wifi_outlined),
-            hint: 'Your WiFi network',
-            label: 'SSID',
+    return Column(
+      children: <Widget>[
+        CForm(
+          key: _formKey,
+          title: 'Connect your sensor to WiFi',
+          content: Column(
+            children: <Widget>[
+              CTextField(
+                validator: (value) => _formKey.currentState.validatePresence(value, 'Please connect to a WiFi network'),
+                readOnly: true,
+                controller: TextEditingController(text: _ssid),
+                prefixIcon: Icon(Icons.wifi_outlined),
+                hint: 'Your WiFi network',
+                label: 'SSID',
+              ),
+              Space(20),
+              CTextField(
+                validator: (value) => _formKey.currentState.validatePresence(value, 'WiFi password is required'),
+                obscureText: true,
+                prefixIcon: Icon(Icons.lock_outlined),
+                hint: 'Your WiFi password',
+                label: 'Password',
+                description: "We won't store or send this information anywhere",
+                onChanged: (value) => setState(() { _password = value; }),
+              ),
+              Space(20),
+            ],
           ),
-          Space(20),
-          CTextField(
-            validator: (value) => _formKey.currentState.validatePresence(value, 'WiFi password is required'),
-            obscureText: true,
-            prefixIcon: Icon(Icons.lock_outlined),
-            hint: 'Your WiFi password',
-            label: 'Password',
-            description: "We won't store or send this information anywhere",
-            onChanged: (value) => setState(() { _password = value; }),
-          ),
-          Space(20),
-        ],
-      ),
-      actions: NextButton(onClick: submit, text: 'Share WiFi credentials', loading: this._loading)
+          actions: NextButton(onClick: submit, text: 'Share WiFi credentials', loading: this._loading)
+        )
+      ]
     );
   }
 }

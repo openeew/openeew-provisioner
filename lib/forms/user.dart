@@ -69,6 +69,17 @@ class UserFormState extends State<UserForm> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        RichText(
+          text: TextSpan(
+            style: DefaultTextStyle.of(context).style,
+            children: <TextSpan>[
+              TextSpan(text: 'As you begin, make sure that your sensor is on and shows a '),
+              TextSpan(text: 'blue light', style: TextStyle(color: CColors.blue60)),
+              TextSpan(text: '.'),
+            ]
+          )
+        ),
+        Space(20),
         CForm(
           key: _formKey,
           title: _newUser ? 'Create an account' : 'Sign in',

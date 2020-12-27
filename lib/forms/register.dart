@@ -52,6 +52,17 @@ class RegisterFormState extends State<RegisterForm> {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
+      RichText(
+        text: TextSpan(
+          style: DefaultTextStyle.of(context).style,
+          children: <TextSpan>[
+            TextSpan(text: 'Success! Your sensor should now display a '),
+            TextSpan(text: 'green light', style: TextStyle(color: CColors.green60)),
+            TextSpan(text: '. One last step - review the following information and onboard your sensor.'),
+          ]
+        )
+      ),
+      Space(20),
       CForm(
         content: Column(
           children: <Widget>[
@@ -90,8 +101,17 @@ class RegisterFormState extends State<RegisterForm> {
             Space(20),
           ]
         ),
-        actions: NextButton(onClick: submit, text: 'Register my sensor', loading: this._loading),
-      )
+        actions: NextButton(onClick: submit, text: 'Onboard my sensor', loading: this._loading),
+      ),
+      Space(40),
+      RichText(
+        text: TextSpan(
+          style: DefaultTextStyle.of(context).style,
+          children: <TextSpan>[
+            TextSpan(text: "Note: We'll list your device on the dashboard, but to maintain your privacy, we'll only show it's general location (ie, within ~5km of the nearest town). Your name and email will not be publically visible.")
+          ]
+        )
+      ),
     ]);
   }
 }
