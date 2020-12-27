@@ -37,7 +37,7 @@ class StepsState extends State<Steps> {
     switch (_step) {
       case StepMarker.user:     return User(setStep, _state);
       case StepMarker.sensor:   return Sensor(setStep, _state);
-      case StepMarker.register: return Register(setStep, _state);
+      case StepMarker.register: return Onboard(setStep, _state);
       case StepMarker.complete: return Complete(setStep, _state);
     }
   }

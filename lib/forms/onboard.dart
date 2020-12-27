@@ -11,25 +11,25 @@ import 'package:openeew_provisioner/widgets/error_message.dart';
 
 import 'package:openeew_provisioner/operations/perform_onboard_request.dart';
 
-class RegisterForm extends StatefulWidget {
+class OnboardForm extends StatefulWidget {
   final Function callback;
   final Map state;
 
-  RegisterForm({ Key key, this.state, this.callback }) : super(key: key);
+  OnboardForm({ Key key, this.state, this.callback }) : super(key: key);
 
   @override
-  RegisterFormState createState() {
-    return RegisterFormState(state);
+  OnboardFormState createState() {
+    return OnboardFormState(state);
   }
 }
 
-class RegisterFormState extends State<RegisterForm> {
+class OnboardFormState extends State<OnboardForm> {
   bool _sendEmail = true;
   bool _loading = false;
   bool _error = false;
   final Map state;
 
-  RegisterFormState(this.state);
+  OnboardFormState(this.state);
 
   void submit(BuildContext context) async {
     setState(() {
