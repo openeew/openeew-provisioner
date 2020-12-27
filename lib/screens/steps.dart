@@ -11,7 +11,7 @@ import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/horizontal_space.dart';
 import 'package:openeew_provisioner/widgets/logo.dart';
 
-enum StepMarker { user, sensor, register, complete }
+enum StepMarker { user, sensor, onboard, complete }
 
 class Steps extends StatefulWidget {
   @override
@@ -22,7 +22,7 @@ class Steps extends StatefulWidget {
 
 class StepsState extends State<Steps> {
   final int maxSteps = 5;
-  var _step = StepMarker.complete;
+  var _step = StepMarker.user;
   Map _state = {};
 
   void setStep(value, state) {
@@ -37,7 +37,7 @@ class StepsState extends State<Steps> {
     switch (_step) {
       case StepMarker.user:     return User(setStep, _state);
       case StepMarker.sensor:   return Sensor(setStep, _state);
-      case StepMarker.register: return Onboard(setStep, _state);
+      case StepMarker.onboard: return Onboard(setStep, _state);
       case StepMarker.complete: return Complete(setStep, _state);
     }
   }
