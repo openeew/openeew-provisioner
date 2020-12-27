@@ -67,59 +67,65 @@ class UserFormState extends State<UserForm> {
 
   @override
   Widget build(BuildContext context) {
-    return CForm(
-      key: _formKey,
-      title: _newUser ? 'Create an account' : 'Sign in',
-      content: Column(
-        children: <Widget>[
-          _newUser ? (
-            Row(children: <Widget>[
-              Expanded(flex: 8, child: CTextField(
-                id: 'firstName',
-                validator: (value) => _formKey.currentState.validatePresence(value, 'First name is required'),
-                label: 'First name',
-                hint: 'Beth',
-                onChanged: (value) => setState(() { _firstName = value; }),
-              )),
-              Expanded(flex: 1, child: Container()),
-              Expanded(flex: 8, child: CTextField(
-                id: 'lastName',
-                validator: (value) => _formKey.currentState.validatePresence(value, 'Last name is required'),
-                label: 'Last name',
-                hint: 'Harmon',
-                onChanged: (value) => setState(() { _lastName = value; }),
-              )),
-            ])
-          ) : CText(data: ''),
-          Space(20),
-          CTextField(
-            id: 'email',
-            validator: (value) => _formKey.currentState.validatePresence(value, 'Contact email is required'),
-            label: 'Contact email',
-            hint: 'you@example.com',
-            onChanged: (value) => setState(() { _email = value; }),
+    return Column(
+      children: <Widget>[
+        CForm(
+          key: _formKey,
+          title: _newUser ? 'Create an account' : 'Sign in',
+          content: Column(
+            children: <Widget>[
+              _newUser ? Column(
+                children: <Widget>[
+                  Row(children: <Widget>[
+                    Expanded(flex: 8, child: CTextField(
+                      id: 'firstName',
+                      validator: (value) => _formKey.currentState.validatePresence(value, 'First name is required'),
+                      label: 'First name',
+                      hint: 'Beth',
+                      onChanged: (value) => setState(() { _firstName = value; }),
+                    )),
+                    Expanded(flex: 1, child: Container()),
+                    Expanded(flex: 8, child: CTextField(
+                      id: 'lastName',
+                      validator: (value) => _formKey.currentState.validatePresence(value, 'Last name is required'),
+                      label: 'Last name',
+                      hint: 'Harmon',
+                      onChanged: (value) => setState(() { _lastName = value; }),
+                    )),
+                  ]),
+                  Space(20),
+                ]
+              ) : CText(data: ''),
+              CTextField(
+                id: 'email',
+                validator: (value) => _formKey.currentState.validatePresence(value, 'Contact email is required'),
+                label: 'Email',
+                hint: 'you@example.com',
+                onChanged: (value) => setState(() { _email = value; }),
+              ),
+              Space(20),
+              CTextField(
+                id: 'password',
+                validator: (value) => _formKey.currentState.validatePresence(value, 'Password is required'),
+                label: 'Password',
+                onChanged: (value) => setState(() { _password = value; }),
+                obscureText: true,
+              ),
+              Space(20),
+            ],
           ),
-          Space(20),
-          CTextField(
-            id: 'password',
-            validator: (value) => _formKey.currentState.validatePresence(value, 'Password is required'),
-            label: 'Password',
-            onChanged: (value) => setState(() { _password = value; }),
-            obscureText: true,
-          ),
-          Space(20),
-          NextButton(onClick: submit, text: _newUser ? 'Create account' : 'Sign in', loading: this._loading),
-          Space(20),
-          Row(children: <Widget>[
-            CText(data: _newUser ? 'Already have an account?' : 'First time here?'),
-            HorizontalSpace(10),
-            CLink(
-              url: _newUser ? 'Sign in' : 'Create an account',
-              onTap: (event) => { setState(() { _newUser = !_newUser; }) }
-            )
-          ])
-        ],
-      ),
+          actions: NextButton(onClick: submit, text: _newUser ? 'Create account' : 'Sign in', loading: this._loading),
+        ),
+        Space(20),
+        Row(children: <Widget>[
+          CText(data: _newUser ? 'Already have an account?' : 'First time here?'),
+          HorizontalSpace(5),
+          CLink(
+            url: _newUser ? 'Sign in' : 'Create an account',
+            onTap: (event) => { setState(() { _newUser = !_newUser; }) }
+          )
+        ]),
+      ]
     );
   }
 }

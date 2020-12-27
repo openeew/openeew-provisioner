@@ -105,10 +105,10 @@ class CFormState extends State<CForm> {
                   const SizedBox(height: 20),
                 ],
                 if (widget.content != null) widget.content,
+                if (widget.actions != null) widget.actions,
               ],
             ),
           ),
-          if (widget.actions != null) widget.actions,
         ],
       ),
     );
