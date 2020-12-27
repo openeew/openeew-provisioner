@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:openeew_provisioner/theme/carbon.dart';
 
-import 'package:openeew_provisioner/operations/perform_user_registration_request.dart';
+import 'package:openeew_provisioner/operations/perform_signin_request.dart';
+import 'package:openeew_provisioner/operations/perform_signup_request.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/horizontal_space.dart';
@@ -36,12 +37,19 @@ class UserFormState extends State<UserForm> {
         _error = false;
       });
 
-      int result = await PerformUserRegistrationRequest({
-        'first_name': _firstName,
-        'last_name': _lastName,
-        'email': _email,
-        'password': _password,
-      }).perform();
+      int result = _newUser ? (
+        await PerformSignupRequest({
+          'first_name': _firstName,
+          'last_name': _lastName,
+          'email': _email,
+          'password': _password,
+        }).perform()
+      ) : (
+        await PerformSigninRequest({
+          'email': _email,
+          'password': _password
+        }).perform()
+      );
 
       setState(() {
         _loading = false;
@@ -100,7 +108,7 @@ class UserFormState extends State<UserForm> {
             obscureText: true,
           ),
           Space(20),
-          NextButton(onClick: submit, text: 'Submit', loading: this._loading),
+          NextButton(onClick: submit, text: _newUser ? 'Create account' : 'Sign in', loading: this._loading),
           Space(20),
           Row(children: <Widget>[
             CText(data: _newUser ? 'Already have an account?' : 'First time here?'),

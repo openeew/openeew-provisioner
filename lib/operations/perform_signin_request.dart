@@ -5,9 +5,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:openeew_provisioner/operations/async_platform_operation.dart';
 
-class PerformUserRegistrationRequest extends AsyncPlatformOperation {
+class PerformSigninRequest extends AsyncPlatformOperation {
 
-  PerformUserRegistrationRequest(Map args) : super(args);
+  PerformSigninRequest(Map args) : super(args);
 
   @override
   Future<int> web() {
@@ -20,7 +20,7 @@ class PerformUserRegistrationRequest extends AsyncPlatformOperation {
   @override
   Future<int> fallback() async {
     var response = await http.post(
-      DotEnv().env['USER_ENDPOINT_URL'],
+      DotEnv().env['SIGNIN_ENDPOINT_URL'],
       body: jsonEncode(this.args)
     );
 
