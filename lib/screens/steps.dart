@@ -53,7 +53,7 @@ class StepsState extends State<Steps> {
               children: <Widget>[
                 Space(20),
                 Row(children: <Widget>[
-                  Logo(0.75, false),
+                  Logo(0.75),
                   HorizontalSpace(10),
                   CText(
                     data: 'OpenEEW',
