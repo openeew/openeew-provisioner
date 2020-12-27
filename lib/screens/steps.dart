@@ -22,7 +22,7 @@ class Steps extends StatefulWidget {
 
 class StepsState extends State<Steps> {
   final int maxSteps = 5;
-  var _step = StepMarker.user;
+  var _step = StepMarker.complete;
   Map _state = {};
 
   void setStep(value, state) {
