@@ -50,7 +50,7 @@ class SensorFormState extends State<SensorForm> {
 
       setState(() {
         _loading = false;
-        _error = _macaddress != "";
+        _error = _macaddress == null || _macaddress == "";
       });
 
       if (!_error) {
@@ -114,7 +114,7 @@ class SensorFormState extends State<SensorForm> {
         children: <Widget>[
           CTextField(
             validator: (value) => _formKey.currentState.validatePresence(value, 'Please connect to a WiFi network'),
-            enabled: false,
+            readOnly: true,
             controller: TextEditingController(text: _ssid),
             prefixIcon: Icon(Icons.wifi_outlined),
             hint: 'Your WiFi network',
