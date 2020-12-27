@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:openeew_provisioner/theme/carbon.dart';
 import 'package:openeew_provisioner/widgets/space.dart';
 
 class ErrorMessage extends StatelessWidget {
@@ -10,14 +11,14 @@ class ErrorMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (this.visible) {
-      return Text(
-        this.text,
-        style: TextStyle(color: Colors.red),
-        textAlign: TextAlign.center
-      );
-    } else {
-      return Text('');
-    }
+    return this.visible ? Column(
+      children: <Widget>[
+        Text(
+          this.text,
+          style: TextStyle(color: CColors.red60)
+        ),
+        Space(20),
+      ]
+    ) : Space(0);
   }
 }

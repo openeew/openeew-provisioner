@@ -7,7 +7,10 @@ import 'package:openeew_provisioner/theme/carbon.dart';
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
 
+import 'package:openeew_provisioner/operations/perform_route.dart';
 import 'package:openeew_provisioner/operations/perform_url_route.dart';
+
+import 'package:openeew_provisioner/screens/steps.dart';
 
 class CompleteForm extends StatefulWidget {
   CompleteForm({ Key key }) : super(key: key);
@@ -23,6 +26,10 @@ class CompleteFormState extends State<CompleteForm> {
     await PerformUrlRoute({
       'url': DotEnv().env['DASHBOARD_URL']
     }).perform();
+  }
+
+  void restart(BuildContext context) async {
+    PerformRoute({ 'context': context, 'route': Steps() }).perform();
   }
 
   @override
@@ -55,6 +62,8 @@ class CompleteFormState extends State<CompleteForm> {
             ]
           )
         ),
+        Space(20),
+        CLink(url: 'Start over', onTap: (event) => restart(context)),
       ]
     );
   }

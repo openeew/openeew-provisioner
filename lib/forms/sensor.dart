@@ -5,6 +5,7 @@ import 'package:openeew_provisioner/theme/carbon.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
+import 'package:openeew_provisioner/widgets/error_message.dart';
 
 import 'package:openeew_provisioner/operations/perform_permission_request.dart';
 import 'package:openeew_provisioner/operations/perform_position_request.dart';
@@ -115,6 +116,7 @@ class SensorFormState extends State<SensorForm> {
           title: 'Connect your sensor to WiFi',
           content: Column(
             children: <Widget>[
+              ErrorMessage(this._error, "Sorry, your sensor was unable to connect to the WiFi. Please check it is on and ready, and try again."),
               CTextField(
                 validator: (value) => _formKey.currentState.validatePresence(value, 'Please connect to a WiFi network'),
                 readOnly: true,

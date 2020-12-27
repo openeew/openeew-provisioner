@@ -7,6 +7,7 @@ import 'package:openeew_provisioner/operations/perform_signup_request.dart';
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/horizontal_space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
+import 'package:openeew_provisioner/widgets/error_message.dart';
 
 class UserForm extends StatefulWidget {
   final Function callback;
@@ -56,12 +57,14 @@ class UserFormState extends State<UserForm> {
         _error = result != 200;
       });
 
-      widget.callback({
-        'first_name': _firstName,
-        'last_name': _lastName,
-        'email': _email,
-        'password': _password,
-      });
+      if (!_error) {
+        widget.callback({
+          'first_name': _firstName,
+          'last_name': _lastName,
+          'email': _email,
+          'password': _password,
+        });
+      }
     }
   }
 
@@ -85,6 +88,11 @@ class UserFormState extends State<UserForm> {
           title: _newUser ? 'Create an account' : 'Sign in',
           content: Column(
             children: <Widget>[
+              ErrorMessage(this._error, _newUser ? (
+                "Sorry, we weren't able to create an account for you. Please check your credentials and try again."
+              ) : (
+                "Sorry, we weren't able to log you in. Please check your credentials and try again."
+              )),
               _newUser ? Column(
                 children: <Widget>[
                   Row(children: <Widget>[

@@ -99,6 +99,7 @@ class OnboardFormState extends State<OnboardForm> {
             Space(20),
             Divider(),
             Space(20),
+            ErrorMessage(this._error, "Sorry, we weren't able to onboard this device. Please ensure your WiFi is connected and try again."),
           ]
         ),
         actions: NextButton(onClick: submit, text: 'Onboard my sensor', loading: this._loading),
