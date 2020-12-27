@@ -23,7 +23,6 @@ class RegisterForm extends StatefulWidget {
 }
 
 class RegisterFormState extends State<RegisterForm> {
-  bool _sendEmail = true;
   final Map state;
 
   RegisterFormState(this.state);
@@ -33,10 +32,6 @@ class RegisterFormState extends State<RegisterForm> {
       // Only send the registration data if SmartConfig connected
       // successfully with a sensor and received a Mac Address
       sendRegistration();
-    }
-
-    if(_sendEmail) {
-      // TODO: send email to user
     }
 
     widget.callback();
@@ -87,24 +82,8 @@ class RegisterFormState extends State<RegisterForm> {
       ]),
       Space(10),
       Divider(),
-      Space(10),
-      Row(children: <Widget>[
-        Expanded(flex: 4, child: ToggleButtons(
-          onPressed: (int index) => setState(() { _sendEmail = !_sendEmail; }),
-          isSelected: [!_sendEmail, _sendEmail],
-          borderRadius: BorderRadius.circular(30),
-          borderWidth: 0.0,
-          children: <Widget>[
-            Container(),
-            Icon(Icons.check_rounded)
-          ],
-        )),
-        Expanded(flex: 8, child: Text('Send me a confirmation email')),
-      ]),
       Space(20),
-      Divider(),
-      Space(20),
-      NextButton(onClick: submit, text: 'Register'),
+      NextButton(onClick: submit, text: 'Register my sensor'),
       Space(20),
     ]);
   }

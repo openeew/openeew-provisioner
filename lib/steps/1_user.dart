@@ -11,6 +11,6 @@ class User extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UserForm(callback: (state) => setStep(StepMarker.wifi, state));
+    return UserForm(callback: (state) => setStep(StepMarker.sensor, state));
   }
 }

@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:openeew_provisioner/theme/carbon.dart';
 
 import 'package:openeew_provisioner/steps/1_user.dart';
-import 'package:openeew_provisioner/steps/2_wifi.dart';
-import 'package:openeew_provisioner/steps/3_sensor.dart';
-import 'package:openeew_provisioner/steps/4_register.dart';
-import 'package:openeew_provisioner/steps/5_complete.dart';
+import 'package:openeew_provisioner/steps/2_sensor.dart';
+import 'package:openeew_provisioner/steps/3_register.dart';
+import 'package:openeew_provisioner/steps/4_complete.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
+import 'package:openeew_provisioner/widgets/horizontal_space.dart';
 import 'package:openeew_provisioner/widgets/logo.dart';
 
-enum StepMarker { user, wifi, sensor, register, complete }
+enum StepMarker { user, sensor, register, complete }
 
 class Steps extends StatefulWidget {
   @override
@@ -36,7 +36,6 @@ class StepsState extends State<Steps> {
   Widget getWidget() {
     switch (_step) {
       case StepMarker.user:     return User(setStep, _state);
-      case StepMarker.wifi:     return Wifi(setStep, _state);
       case StepMarker.sensor:   return Sensor(setStep, _state);
       case StepMarker.register: return Register(setStep, _state);
       case StepMarker.complete: return Complete(setStep, _state);
@@ -52,13 +51,21 @@ class StepsState extends State<Steps> {
             constraints: BoxConstraints(maxWidth: 400),
             child: Column(
               children: <Widget>[
+                Space(20),
                 Row(children: <Widget>[
                   Logo(0.75, false),
-                  Space(40),
-                  CText(data: 'OpenEEW'),
-                  Space(40),
-                  CText(data: 'Sensors'),
+                  HorizontalSpace(10),
+                  CText(
+                    data: 'OpenEEW',
+                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
+                  HorizontalSpace(5),
+                  CText(
+                    data: 'Sensors',
+                    style: TextStyle(fontSize: 20.0),
+                  ),
                 ]),
+                Space(20),
                 getWidget(),
               ]
             ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:openeew_provisioner/theme/carbon.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
+import 'package:openeew_provisioner/widgets/horizontal_space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
 
 class UserForm extends StatefulWidget {
@@ -82,6 +83,7 @@ class UserFormState extends State<UserForm> {
           Space(20),
           Row(children: <Widget>[
             CText(data: _newUser ? 'Already have an account?' : 'First time here?'),
+            HorizontalSpace(10),
             CLink(
               url: _newUser ? 'Sign in' : 'Create an account',
               onTap: (event) => { setState(() { _newUser = !_newUser; }) }

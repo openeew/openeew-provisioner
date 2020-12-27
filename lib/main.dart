@@ -14,7 +14,11 @@ class OpenEEWProvisioner extends StatelessWidget {
   Widget build(BuildContext context) {
     return StyleStore(
       style: CarbonThemes.gray100,
-      child: MaterialApp(title: 'OpenEEW Provisioner', home: Start())
+      child: MaterialApp(
+        theme: CarbonThemes.gray100.get<ThemeData>('material-theme'),
+        title: 'OpenEEW Provisioner',
+        home: Start()
+      )
     );
   }
 }

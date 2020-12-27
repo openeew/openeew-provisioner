@@ -121,7 +121,7 @@ class SensorFormState extends State<SensorForm> {
             onChanged: (value) => setState(() { _password = value; }),
           ),
           Space(20),
-          NextButton(onClick: submit, text: 'Send WiFi to OpenEEW sensor')
+          NextButton(onClick: submit, text: 'Share WiFi credentials')
         ],
       ),
     );
