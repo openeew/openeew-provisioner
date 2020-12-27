@@ -24,6 +24,8 @@ class SensorForm extends StatefulWidget {
 
 class SensorFormState extends State<SensorForm> {
   final _formKey = GlobalKey<CFormState>();
+  bool _loading = false;
+  bool _error = false;
   String _ssid;
   String _bssid;
   String _password;
@@ -35,23 +37,31 @@ class SensorFormState extends State<SensorForm> {
 
   void submit(BuildContext context) async {
     if (_formKey.currentState.validate()) {
+      setState(() {
+        _loading = true;
+        _error = false;
+      });
+
       String _macaddress = await PerformSmartconfigRequest({
         'ssid': _ssid,
         'bssid': _bssid,
         'password': _password,
       }).perform();
 
-      if ( _macaddress == null ) {
-        // SmartConfig failed / timed out
-        _macaddress = "";
-      }
-      widget.callback({
-        'macaddress': _macaddress,
-        'latitude': _latitude,
-        'longitude': _longitude,
-        'city': _city,
-        'country': _country,
+      setState(() {
+        _loading = false;
+        _error = _macaddress != "";
       });
+
+      if (!_error) {
+        widget.callback({
+          'macaddress': _macaddress,
+          'latitude': _latitude,
+          'longitude': _longitude,
+          'city': _city,
+          'country': _country,
+        });
+      }
     }
   }
 
@@ -121,7 +131,7 @@ class SensorFormState extends State<SensorForm> {
             onChanged: (value) => setState(() { _password = value; }),
           ),
           Space(20),
-          NextButton(onClick: submit, text: 'Share WiFi credentials')
+          NextButton(onClick: submit, text: 'Share WiFi credentials', loading: this._loading)
         ],
       ),
     );
