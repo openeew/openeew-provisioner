@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:openeew_provisioner/theme/carbon.dart';
+
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/info_field.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
@@ -50,45 +52,46 @@ class RegisterFormState extends State<RegisterForm> {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
-      Space(10),
-      Divider(),
-      Space(10),
-      Text(
-        'Device summary',
-        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-      ),
-      Space(20),
-      Row(children: <Widget>[
-        Expanded(flex: 1, child: InfoField('MAC address', state['macaddress'])),
-        Expanded(flex: 1, child: InfoField('Coordinates', state['latitude'] + ',' + state['longitude'])),
-      ]),
-      Space(10),
-      Row(children: <Widget>[
-        Expanded(flex: 1, child: InfoField('City', state['city'])),
-        Expanded(flex: 1, child: InfoField('Country', state['country'])),
-      ]),
-      Space(10),
-      Row(children: <Widget>[
-        Expanded(flex: 1, child: InfoField('Device owner', state['first_name'] + ' ' + state['last_name'])),
-        Expanded(flex: 1, child: InfoField('Contact email', state['email'])),
-      ]),
-      Divider(),
-      Space(10),
-      Text(
-        'Network information',
-        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-      ),
-      Space(20),
-      Row(children: <Widget>[
-        Expanded(flex: 1, child: InfoField('Network manager', state['email'])),
-      ]),
-      Space(10),
-      Divider(),
-      Space(20),
-      NextButton(onClick: submit, text: 'Register my sensor', loading: this._loading),
-      Space(20),
-      ErrorMessage(this._error, "Sorry, we weren't able to register your device. Please try again."),
-      Space(20)
+      CForm(
+        content: Column(
+          children: <Widget>[
+            CText(
+              data: 'Device summary',
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+            ),
+            Space(20),
+            Row(children: <Widget>[
+              Expanded(flex: 1, child: InfoField('MAC address', state['macaddress'])),
+              Expanded(flex: 1, child: InfoField('Coordinates', state['latitude'] + ',' + state['longitude'])),
+            ]),
+            Space(10),
+            Row(children: <Widget>[
+              Expanded(flex: 1, child: InfoField('City', state['city'])),
+              Expanded(flex: 1, child: InfoField('Country', state['country'])),
+            ]),
+            Space(10),
+            Row(children: <Widget>[
+              Expanded(flex: 1, child: InfoField('Device owner', state['first_name'] + ' ' + state['last_name'])),
+              Expanded(flex: 1, child: InfoField('Contact email', state['email'])),
+            ]),
+            Space(20),
+            Divider(),
+            Space(20),
+            CText(
+              data: 'Network information',
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+            ),
+            Space(20),
+            Row(children: <Widget>[
+              Expanded(flex: 1, child: InfoField('Network manager', state['email'])),
+            ]),
+            Space(20),
+            Divider(),
+            Space(20),
+          ]
+        ),
+        actions: NextButton(onClick: submit, text: 'Register my sensor', loading: this._loading),
+      )
     ]);
   }
 }

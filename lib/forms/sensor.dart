@@ -131,9 +131,9 @@ class SensorFormState extends State<SensorForm> {
             onChanged: (value) => setState(() { _password = value; }),
           ),
           Space(20),
-          NextButton(onClick: submit, text: 'Share WiFi credentials', loading: this._loading)
         ],
       ),
+      actions: NextButton(onClick: submit, text: 'Share WiFi credentials', loading: this._loading)
     );
   }
 }

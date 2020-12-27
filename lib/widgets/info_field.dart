@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
+import 'package:openeew_provisioner/theme/carbon.dart';
 
 class InfoField extends StatelessWidget {
   final String title;
@@ -14,15 +15,9 @@ class InfoField extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          this.title,
-          style: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.bold),
-        ),
+        CText(data: this.title, style: TextStyle(fontWeight: FontWeight.bold)),
         Space(10),
-        Text(
-          this.text,
-          style: TextStyle(color: Colors.grey[700])
-        ),
+        CText(data: this.text),
         Space(10),
       ],
     );
