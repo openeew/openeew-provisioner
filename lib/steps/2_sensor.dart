@@ -12,6 +12,6 @@ class Sensor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SensorForm(callback: (state) => setStep(StepMarker.onboard, state));
+    return SensorForm(callback: (state) => setStep(StepMarker.provision, state));
   }
 }

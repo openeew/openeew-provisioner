@@ -9,27 +9,27 @@ import 'package:openeew_provisioner/widgets/info_field.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
 import 'package:openeew_provisioner/widgets/error_message.dart';
 
-import 'package:openeew_provisioner/operations/perform_onboard_request.dart';
+import 'package:openeew_provisioner/operations/perform_provision_request.dart';
 
-class OnboardForm extends StatefulWidget {
+class ProvisionForm extends StatefulWidget {
   final Function callback;
   final Map state;
 
-  OnboardForm({ Key key, this.state, this.callback }) : super(key: key);
+  ProvisionForm({ Key key, this.state, this.callback }) : super(key: key);
 
   @override
-  OnboardFormState createState() {
-    return OnboardFormState(state);
+  ProvisionFormState createState() {
+    return ProvisionFormState(state);
   }
 }
 
-class OnboardFormState extends State<OnboardForm> {
+class ProvisionFormState extends State<ProvisionForm> {
   bool _sendEmail = true;
   bool _loading = false;
   bool _error = false;
   final Map state;
 
-  OnboardFormState(this.state);
+  ProvisionFormState(this.state);
 
   void submit(BuildContext context) async {
     setState(() {
@@ -37,7 +37,7 @@ class OnboardFormState extends State<OnboardForm> {
       _error = false;
     });
 
-    int result = await PerformOnboardRequest({ 'state': this.state }).perform();
+    int result = await PerformProvisionRequest({ 'state': this.state }).perform();
 
     setState(() {
       _loading = false;
@@ -58,7 +58,7 @@ class OnboardFormState extends State<OnboardForm> {
           children: <TextSpan>[
             TextSpan(text: 'Success! Your sensor should now display a '),
             TextSpan(text: 'green light', style: TextStyle(color: CColors.green60)),
-            TextSpan(text: '. One last step - review the following information and onboard your sensor.'),
+            TextSpan(text: '. One last step - review the following information and provision your sensor.'),
           ]
         )
       ),
@@ -72,37 +72,23 @@ class OnboardFormState extends State<OnboardForm> {
             ),
             Space(20),
             Row(children: <Widget>[
-              Expanded(flex: 1, child: InfoField('MAC address', state['macaddress'])),
+              Expanded(flex: 1, child: InfoField('Sensor ID', state['macaddress'])),
               Expanded(flex: 1, child: InfoField('Coordinates', state['latitude'] + ',' + state['longitude'])),
             ]),
             Space(10),
             Row(children: <Widget>[
-              Expanded(flex: 1, child: InfoField('City', state['city'])),
+              Expanded(flex: 1, child: InfoField('Device owner', state['first_name'] + ' ' + state['last_name'])),
+              Expanded(flex: 1, child: InfoField('Device owner email', state['email'])),
+            ]),
+            Row(children: <Widget>[
               Expanded(flex: 1, child: InfoField('Country', state['country'])),
             ]),
             Space(10),
-            Row(children: <Widget>[
-              Expanded(flex: 1, child: InfoField('Device owner', state['first_name'] + ' ' + state['last_name'])),
-              Expanded(flex: 1, child: InfoField('Contact email', state['email'])),
-            ]),
             Space(20),
-            Divider(),
-            Space(20),
-            CText(
-              data: 'Network information',
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-            ),
-            Space(20),
-            Row(children: <Widget>[
-              Expanded(flex: 1, child: InfoField('Network manager', state['email'])),
-            ]),
-            Space(20),
-            Divider(),
-            Space(20),
-            ErrorMessage(this._error, "Sorry, we weren't able to onboard this device. Please ensure your WiFi is connected and try again."),
+            ErrorMessage(this._error, "Sorry, we weren't able to provision this device. Please ensure your WiFi is connected and try again."),
           ]
         ),
-        actions: NextButton(onClick: submit, text: 'Onboard my sensor', loading: this._loading),
+        actions: NextButton(onClick: submit, text: 'Provision my sensor', loading: this._loading),
       ),
       Space(40),
       RichText(
