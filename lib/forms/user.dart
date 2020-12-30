@@ -21,7 +21,7 @@ class UserForm extends StatefulWidget {
 }
 
 class UserFormState extends State<UserForm> {
-  final _formKey = GlobalKey<CFormState>();
+  GlobalKey<CFormState> _formKey = GlobalKey<CFormState>();
 
   bool _loading = false;
   bool _error = false;
@@ -30,6 +30,13 @@ class UserFormState extends State<UserForm> {
   String _lastName = '';
   String _email = '';
   String _password = '';
+
+  void swapForm() {
+    setState(() {
+      _newUser = !_newUser;
+      _formKey = GlobalKey<CFormState>();
+    });
+  }
 
   void submit(BuildContext context) async {
     if (_formKey.currentState.validate()) {
@@ -141,7 +148,7 @@ class UserFormState extends State<UserForm> {
           HorizontalSpace(5),
           CLink(
             url: _newUser ? 'Sign in' : 'Create an account',
-            onTap: (event) => { setState(() { _newUser = !_newUser; }) }
+            onTap: (event) => swapForm()
           )
         ]),
       ]

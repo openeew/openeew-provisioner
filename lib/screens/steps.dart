@@ -4,14 +4,14 @@ import 'package:openeew_provisioner/theme/carbon.dart';
 
 import 'package:openeew_provisioner/steps/1_user.dart';
 import 'package:openeew_provisioner/steps/2_sensor.dart';
-import 'package:openeew_provisioner/steps/3_onboard.dart';
+import 'package:openeew_provisioner/steps/3_provision.dart';
 import 'package:openeew_provisioner/steps/4_complete.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/horizontal_space.dart';
 import 'package:openeew_provisioner/widgets/logo.dart';
 
-enum StepMarker { user, sensor, onboard, complete }
+enum StepMarker { user, sensor, provision, complete }
 
 class Steps extends StatefulWidget {
   @override
@@ -35,10 +35,10 @@ class StepsState extends State<Steps> {
 
   Widget getWidget() {
     switch (_step) {
-      case StepMarker.user:     return User(setStep, _state);
-      case StepMarker.sensor:   return Sensor(setStep, _state);
-      case StepMarker.onboard: return Onboard(setStep, _state);
-      case StepMarker.complete: return Complete(setStep, _state);
+      case StepMarker.user:      return User(setStep, _state);
+      case StepMarker.sensor:    return Sensor(setStep, _state);
+      case StepMarker.provision: return Provision(setStep, _state);
+      case StepMarker.complete:  return Complete(setStep, _state);
     }
   }
 

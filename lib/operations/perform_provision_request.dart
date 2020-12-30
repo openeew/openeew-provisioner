@@ -5,9 +5,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:openeew_provisioner/operations/async_platform_operation.dart';
 
-class PerformOnboardRequest extends AsyncPlatformOperation {
+class PerformProvisionRequest extends AsyncPlatformOperation {
 
-  PerformOnboardRequest(Map args) : super(args);
+  PerformProvisionRequest(Map args) : super(args);
 
   @override
   Future<int> web() {
