@@ -34,6 +34,7 @@ dependencies:
   stylex: "^1.1.0"
   url_launcher: "^5.7.5"
   flutter_svg: "^0.19.0"
+  flutter_launcher_icons: "^0.8.0"
   flutter:
     sdk: flutter
 
@@ -45,6 +46,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "images/openeew-logo.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
