@@ -8,6 +8,7 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Image.asset('images/logo.png', width: scale * 48, height: scale * 48),
       ]
