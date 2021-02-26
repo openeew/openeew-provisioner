@@ -48,25 +48,34 @@ class StepsState extends State<Steps> {
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400),
             child: Column(
               children: <Widget>[
-                Space(20),
-                Row(children: <Widget>[
-                  Logo(0.75),
-                  HorizontalSpace(10),
-                  CText(
-                    data: 'OpenEEW',
-                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                ColoredBox(
+                  color: CColors.gray90,
+                  child: Column(
+                    children: <Widget>[
+                      Space(20),
+                      Row(children: <Widget>[
+                        HorizontalSpace(20),
+                        CText(
+                          data: 'OpenEEW',
+                          style: TextStyle(color: CColors.white0, fontSize: 20.0, fontWeight: FontWeight.bold),
+                        ),
+                        HorizontalSpace(5),
+                        CText(
+                          data: 'Sensors',
+                          style: TextStyle(color: CColors.white0, fontSize: 20.0),
+                        ),
+                      ]),
+                      Space(20),
+                    ],
                   ),
-                  HorizontalSpace(5),
-                  CText(
-                    data: 'Sensors',
-                    style: TextStyle(fontSize: 20.0),
-                  ),
-                ]),
+                ),
                 Space(20),
-                getWidget(),
+                Container(
+                  constraints: BoxConstraints(maxWidth: 400),
+                  child: getWidget()
+                )
               ]
             ),
           ),

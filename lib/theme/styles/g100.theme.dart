@@ -4,41 +4,41 @@ import 'package:flutter/material.dart';
 import 'package:stylex/stylex.dart';
 
 final _materialTheme = ThemeData(
-  scaffoldBackgroundColor: CColors.gray100,
+  scaffoldBackgroundColor: CColors.white0,
   primaryColor: CColors.blue60,
-  accentColor: CColors.gray10,
+  accentColor: CColors.gray90,
   disabledColor: CColors.gray80,
   textTheme: TextTheme(
     bodyText1: TextStyle(
-      color: CColors.gray10,
+      color: CColors.gray90,
       fontFamily: carbonFonts.get<String>('carbon-font-family'),
     ),
     bodyText2: TextStyle(
-      color: CColors.gray10,
+      color: CColors.gray90,
       fontFamily: carbonFonts.get<String>('carbon-font-family'),
     ),
     headline1: TextStyle(
-      color: CColors.gray10,
+      color: CColors.gray90,
       fontFamily: carbonFonts.get<String>('carbon-font-family'),
     ),
     headline2: TextStyle(
-      color: CColors.gray10,
+      color: CColors.gray90,
       fontFamily: carbonFonts.get<String>('carbon-font-family'),
     ),
     headline3: TextStyle(
-      color: CColors.gray10,
+      color: CColors.gray90,
       fontFamily: carbonFonts.get<String>('carbon-font-family'),
     ),
     headline4: TextStyle(
-      color: CColors.gray10,
+      color: CColors.gray90,
       fontFamily: carbonFonts.get<String>('carbon-font-family'),
     ),
     headline5: TextStyle(
-      color: CColors.gray10,
+      color: CColors.gray90,
       fontFamily: carbonFonts.get<String>('carbon-font-family'),
     ),
     headline6: TextStyle(
-      color: CColors.gray10,
+      color: CColors.gray90,
       fontFamily: carbonFonts.get<String>('carbon-font-family'),
     ),
   ),

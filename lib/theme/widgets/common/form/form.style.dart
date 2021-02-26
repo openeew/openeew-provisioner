@@ -19,16 +19,16 @@ final _form = StyleX({
 
 final formG100 = StyleX({
   // background-color
-  'form-modal-background-color': CColors.gray90,
-  'form-group-background-color': CColors.gray100,
+  'form-modal-background-color': CColors.white0,
+  'form-group-background-color': CColors.white0,
 
   // label-color
-  'form-modal-label-color': CColors.gray30,
-  'form-group-label-color': CColors.gray30,
+  'form-modal-label-color': CColors.gray70,
+  'form-group-label-color': CColors.gray70,
 
   // title-color
-  'form-modal-title-color': CColors.gray10,
-  'form-group-title-color': CColors.gray10,
+  'form-modal-title-color': CColors.gray90,
+  'form-group-title-color': CColors.gray90,
 
   // description-color
   'form-modal-description-color': CColors.gray30,

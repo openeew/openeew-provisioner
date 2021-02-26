@@ -130,22 +130,22 @@ class SensorFormState extends State<SensorForm> {
                 validator: (value) => _formKey.currentState.validatePresence(value, 'WiFi password is required'),
                 obscureText: true,
                 prefixIcon: Icon(Icons.lock_outlined),
-                hint: 'Your WiFi password',
+                hint: 'WiFi password',
                 label: 'Password',
-                description: "We won't store or send this information anywhere",
+                description: "(After the initial setup, you can connect your device via ethernet or LTE if you prefer)",
                 onChanged: (value) => setState(() { _password = value; }),
               ),
               Space(20),
             ],
           ),
-          actions: NextButton(onClick: submit, text: 'Share credentials', loading: this._loading)
+          actions: NextButton(onClick: submit, text: 'Connect sensor to WiFi', loading: this._loading)
         ),
         Space(40),
         RichText(
           text: TextSpan(
             style: DefaultTextStyle.of(context).style,
             children: <TextSpan>[
-              TextSpan(text: "Note: After the initial step, you can provision devices via ethernet if you prefer.")
+              TextSpan(text: "We don't store your WiFi credentials. Upon entering your password here, we share it only with your sensor and only this one time to connect the sensor to the internet.")
             ]
           )
         ),

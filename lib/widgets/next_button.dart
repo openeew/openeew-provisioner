@@ -11,9 +11,10 @@ class NextButton extends StatelessWidget {
   final Widget route;
   final String text;
   final Function onClick;
+  final double width;
   final bool loading;
 
-  const NextButton({ this.route, this.onClick, this.text, this.loading = false });
+  const NextButton({ this.route, this.onClick, this.text, this.width = 178, this.loading = false });
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +22,10 @@ class NextButton extends StatelessWidget {
       return Loading(
         indicator: LineScaleIndicator(),
         size: 25.0,
+        color: CColors.gray90,
       );
     } else {
-      return CButton(label: this.text, onTap: () {
+      return CButton(width: this.width, label: this.text, onTap: () {
         if (this.onClick != null) {
           this.onClick(context);
         } else if (this.route != null) {

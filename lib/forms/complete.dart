@@ -37,8 +37,8 @@ class CompleteFormState extends State<CompleteForm> {
     return Column(
       children: <Widget>[
         CForm(
-          title: 'Success!',
           content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               RichText(
                 text: TextSpan(
@@ -48,22 +48,29 @@ class CompleteFormState extends State<CompleteForm> {
                   ]
                 )
               ),
-              Space(40),
+              Space(20),
+              CText(
+                data: 'Next steps',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Space(5),
+              RichText(
+                text: TextSpan(
+                  style: DefaultTextStyle.of(context).style,
+                  children: <TextSpan>[
+                    TextSpan(text: "Login to the "),
+                    TextSpan(text: "OpenEEW dashboard"),
+                    TextSpan(text: " and being to see activity that your sensor detects."),
+                  ]
+                )
+              ),
+              Space(120),
+              NextButton(onClick: submit, text: 'Visit the OpenEEW dashboard', width: 300),
+              Space(20),
+              CLink(url: 'Add another sensor to the network', onTap: (event) => restart(context)),
             ],
           ),
-          actions: NextButton(onClick: submit, text: 'Visit the dashboard')
         ),
-        Space(40),
-        RichText(
-          text: TextSpan(
-            style: DefaultTextStyle.of(context).style,
-            children: <TextSpan>[
-              TextSpan(text: "Note: You can login to the dashboard using the same credentials you created here.")
-            ]
-          )
-        ),
-        Space(20),
-        CLink(url: 'Start over', onTap: (event) => restart(context)),
       ]
     );
   }
