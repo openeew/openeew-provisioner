@@ -52,23 +52,19 @@ class ProvisionFormState extends State<ProvisionForm> {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
-      RichText(
-        text: TextSpan(
-          style: DefaultTextStyle.of(context).style,
-          children: <TextSpan>[
-            TextSpan(text: 'Success! Your sensor should now display a '),
-            TextSpan(text: 'green light', style: TextStyle(color: CColors.green60)),
-            TextSpan(text: '. One last step - review the following information and provision your sensor.'),
-          ]
-        )
-      ),
       Space(20),
       CForm(
         content: Column(
           children: <Widget>[
-            CText(
-              data: 'Device summary',
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+            RichText(
+              text: TextSpan(
+                style: DefaultTextStyle.of(context).style,
+                children: <TextSpan>[
+                  TextSpan(text: 'Alright! Your sensor is connected to the internet and should show a '),
+                  TextSpan(text: 'green light', style: TextStyle(color: CColors.green60)),
+                  TextSpan(text: '. Now, review the following information and add your sensor to the OpenEEW network.'),
+                ]
+              )
             ),
             Space(20),
             Row(children: <Widget>[
@@ -88,14 +84,14 @@ class ProvisionFormState extends State<ProvisionForm> {
             ErrorMessage(this._error, "Sorry, we weren't able to provision this device. Please ensure your WiFi is connected and try again."),
           ]
         ),
-        actions: NextButton(onClick: submit, text: 'Provision my sensor', loading: this._loading),
+        actions: NextButton(onClick: submit, text: 'Add my sensor to the network', loading: this._loading),
       ),
       Space(40),
       RichText(
         text: TextSpan(
           style: DefaultTextStyle.of(context).style,
           children: <TextSpan>[
-            TextSpan(text: "Note: We'll list your device on the dashboard, but to maintain your privacy, we'll only show it's general location (ie, within ~5km of the nearest town). Your name and email will not be publically visible.")
+            TextSpan(text: "Note: We'll list your device on the dashboard, but to maintain your privacy, we'll only show it's general location (ie, within ~5km of the nearest town). Your name and email will not be visible publicly.")
           ]
         )
       ),
