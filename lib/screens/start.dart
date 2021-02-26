@@ -51,12 +51,12 @@ class StartState extends State<Start> {
                     Space(20),
                     CText(
                       data: 'OpenEEW Sensors',
-                      style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: CColors.white0, fontSize: 30.0, fontWeight: FontWeight.bold),
                     ),
                     Space(10),
                     CText(
                       data: 'Provision your sensor',
-                      style: TextStyle(fontSize: 16.0),
+                      style: TextStyle(color: CColors.white0, fontSize: 16.0),
                     ),
                     Space(240),
                     Loading(indicator: LineScaleIndicator(), size: 25.0),

@@ -22,6 +22,7 @@ class NextButton extends StatelessWidget {
       return Loading(
         indicator: LineScaleIndicator(),
         size: 25.0,
+        color: CColors.gray90,
       );
     } else {
       return CButton(width: this.width, label: this.text, onTap: () {
