@@ -20,7 +20,7 @@ class PerformProvisionRequest extends AsyncPlatformOperation {
   @override
   Future<int> fallback() async {
     var response = await http.post(
-      DotEnv().env['ONBOARD_ENDPOINT_URL'],
+      DotEnv().env['PROVISION_ENDPOINT_URL'],
       body: jsonEncode(this.args['state'])
     );
 

@@ -36,7 +36,7 @@ class UserFormState extends State<UserForm> {
         _error = false;
       });
 
-      int result = await PerformUserRequest({
+      Map result = await PerformUserRequest({
         'first_name': _firstName,
         'last_name': _lastName,
         'email': _email,
@@ -44,7 +44,7 @@ class UserFormState extends State<UserForm> {
 
       setState(() {
         _loading = false;
-        _error = result != 200;
+        _error = result['uuid'] == null || result['uuid'].isEmpty;
       });
 
       if (!_error) {
@@ -52,6 +52,8 @@ class UserFormState extends State<UserForm> {
           'first_name': _firstName,
           'last_name': _lastName,
           'email': _email,
+          'uuid': result['uuid'],
+          'token': result['token'],
         });
       }
     }

@@ -10,20 +10,20 @@ class PerformUserRequest extends AsyncPlatformOperation {
   PerformUserRequest(Map args) : super(args);
 
   @override
-  Future<int> web() {
-    return Future<int>.delayed(
-      Duration(seconds : 3),
-      () => 200
-    );
+  Future<Map> web() {
+    return Future<Map>.value({
+      'uuid': 'test-uuid-from-ibm',
+      'token': 'abcdef',
+    });
   }
 
   @override
-  Future<int> fallback() async {
+  Future<Map> fallback() async {
     var response = await http.post(
       DotEnv().env['USER_ENDPOINT_URL'],
       body: jsonEncode(this.args)
     );
 
-    return Future<int>.value(response.statusCode);
+    return Future<Map>.value(jsonDecode(response.body));
   }
 }
