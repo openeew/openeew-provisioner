@@ -64,13 +64,13 @@ class CompleteFormState extends State<CompleteForm> {
                   ]
                 )
               ),
-              Space(40),
+              Space(120),
+              NextButton(onClick: submit, text: 'Visit the OpenEEW dashboard', width: 300),
+              Space(20),
+              CLink(url: 'Add another sensor to the network', onTap: (event) => restart(context)),
             ],
           ),
-          actions: NextButton(onClick: submit, text: 'Visit the dashboard')
         ),
-        Space(20),
-        CLink(url: 'Add another sensor to the network', onTap: (event) => restart(context)),
       ]
     );
   }
