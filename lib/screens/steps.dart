@@ -53,8 +53,6 @@ class StepsState extends State<Steps> {
               children: <Widget>[
                 Space(20),
                 Row(children: <Widget>[
-                  Logo(0.75),
-                  HorizontalSpace(10),
                   CText(
                     data: 'OpenEEW',
                     style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
