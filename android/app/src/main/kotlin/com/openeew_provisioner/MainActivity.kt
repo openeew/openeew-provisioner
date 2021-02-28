@@ -1,4 +1,4 @@
-package com.example.openeew_provisioner
+package com.openeew_provisioner
 
 import io.flutter.embedding.android.FlutterActivity
 
