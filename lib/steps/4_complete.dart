@@ -12,6 +12,6 @@ class Complete extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CompleteForm();
+    return CompleteForm(state: this.state);
   }
 }

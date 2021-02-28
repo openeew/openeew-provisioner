@@ -13,19 +13,23 @@ import 'package:openeew_provisioner/operations/perform_url_route.dart';
 import 'package:openeew_provisioner/screens/steps.dart';
 
 class CompleteForm extends StatefulWidget {
-  CompleteForm({ Key key }) : super(key: key);
+  final Map state;
+
+  CompleteForm({ Key key, this.state }) : super(key: key);
 
   @override
   CompleteFormState createState() {
-    return CompleteFormState();
+    return CompleteFormState(state);
   }
 }
 
 class CompleteFormState extends State<CompleteForm> {
+  final Map state;
+
+  CompleteFormState(this.state);
+
   void submit(BuildContext context) async {
-    await PerformUrlRoute({
-      'url': DotEnv().env['DASHBOARD_URL']
-    }).perform();
+    await PerformUrlRoute({ 'link': this.state['link'] }).perform();
   }
 
   void restart(BuildContext context) async {

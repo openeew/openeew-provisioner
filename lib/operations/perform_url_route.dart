@@ -10,8 +10,8 @@ class PerformUrlRoute extends PlatformOperation {
 
   @override
   Future<int> fallback() async {
-    if (await canLaunch(this.args['url'])) {
-      await launch(this.args['url']);
+    if (await canLaunch(this.args['link'])) {
+      await launch(this.args['link']);
       return 200;
     } else {
       return 404;
