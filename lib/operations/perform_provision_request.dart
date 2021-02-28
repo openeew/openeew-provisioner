@@ -21,7 +21,14 @@ class PerformProvisionRequest extends AsyncPlatformOperation {
   Future<int> fallback() async {
     var response = await http.post(
       DotEnv().env['PROVISION_ENDPOINT_URL'],
-      body: jsonEncode(this.args['state'])
+      body: jsonEncode({
+        'userId': this.args['state']['user_id'],
+        'macaddress': this.args['state']['macaddress'],
+        'latitude': this.args['state']['latitude'],
+        'longitude': this.args['state']['longitude'],
+        'city': this.args['state']['city'],
+        'country': this.args['state']['country'],
+      })
     );
 
     return Future<int>.value(response.statusCode);
