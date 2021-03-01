@@ -44,7 +44,7 @@ class UserFormState extends State<UserForm> {
 
       setState(() {
         _loading = false;
-        _error = result['userId'] == null || result['userId'].isEmpty;
+        _error = result['uuid'] == null || result['uuid'].isEmpty;
       });
 
       if (!_error) {
@@ -52,7 +52,7 @@ class UserFormState extends State<UserForm> {
           'first_name': _firstName,
           'last_name': _lastName,
           'email': _email,
-          'user_id': result['userId'],
+          'uuid': result['uuid'],
           'link': result['link'],
         });
       }
