@@ -66,6 +66,13 @@ _(NB this app will run in the web without a device, but due to the nature of the
   flutter run
   ```
 
+  ### Contributors
+
+  <a href="https://github.com/openeew/openeew-provisioner/graphs/contributors">
+    <img src="https://contributors-img.web.app/image?repo=openeew/openeew-provisioner" />
+  </a>
+  ___
+
 ## Contributing and Developer information
 
 The community welcomes your involvement and contributions to this project. Please read the OpenEEW [contributing](https://github.com/openeew/openeew/blob/master/CONTRIBUTING.md) document for details on our code of conduct, and the process for submitting pull requests to the community.
