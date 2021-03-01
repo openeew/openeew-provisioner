@@ -37,8 +37,8 @@ class UserFormState extends State<UserForm> {
       });
 
       Map result = await PerformUserRequest({
-        'first_name': _firstName,
-        'last_name': _lastName,
+        'givenName': _firstName,
+        'familyName': _lastName,
         'email': _email,
       }).perform();
 
@@ -49,8 +49,8 @@ class UserFormState extends State<UserForm> {
 
       if (!_error) {
         widget.callback({
-          'first_name': _firstName,
-          'last_name': _lastName,
+          'givenName': _firstName,
+          'familyName': _lastName,
           'email': _email,
           'uuid': result['uuid'],
           'link': result['link'],

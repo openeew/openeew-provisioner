@@ -73,7 +73,7 @@ class ProvisionFormState extends State<ProvisionForm> {
             ]),
             Space(10),
             Row(children: <Widget>[
-              Expanded(flex: 1, child: InfoField('Device owner', state['first_name'] + ' ' + state['last_name'])),
+              Expanded(flex: 1, child: InfoField('Device owner', state['givenName'] + ' ' + state['familyName'])),
               Expanded(flex: 1, child: InfoField('Device owner email', state['email'])),
             ]),
             Row(children: <Widget>[
