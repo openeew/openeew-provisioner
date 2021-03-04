@@ -17,7 +17,7 @@ This document describes the OpenEEW sensor provisioning process.
 1. Node-RED searches the Cloudant database for this MAC address and adds / updates Cloudant database record with activation date and last check-in timestamps
 1. While steps 5 to 8 are occurring, the user enters their First name, Last name, email address in the OpenEEW Provisioning app form.
    They then review personally identifiable information - First name, Last name, email, MAC address (sent from the board),
-   City, Country, Latitude, Longitude (which the app acquires from SmartPhone GPS).  
+   City, Country, Latitude, Longitude (which the app acquires from SmartPhone GPS).
    When they press the Register button, the data is posted to a HTTP RESTful endpoint `/OpenEEWRegistration`
 1. Node-RED endpoint receives the user information from the mobile app.
 1. Node-RED searches the Cloudant database for this MAC address. It then adds or updates the Cloudant record with the user data.
@@ -30,7 +30,7 @@ This document describes the OpenEEW sensor provisioning process.
 - Install and launch the OpenEEW Provisioning app. Then select the **Get started** button.
   <table><tr><td>
   <p align="center">
-  <img width="50%" height="50%" src="./images/Android-Launch-OpenEEW-Provisioning-App.png">
+  <img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-Android.png">
   </p>
   </td><td>
   <p align="center">
@@ -108,7 +108,7 @@ This document describes the OpenEEW sensor provisioning process.
    --- Miniterm on /dev/ttyUSB0  115200,8,N,1 ---
    --- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---
    Jun  8 2016 00:22:57
-   
+
    rst:0x1 (POWERON_RESET,
    OpenEEW Sensor Application
    ESP32 WiFi interface ready
@@ -191,7 +191,7 @@ This document describes the OpenEEW sensor provisioning process.
 
 9. While steps 5 to 8 are occurring, the user enters their First name, Last name, email address in the OpenEEW Provisioning app form and then press the **Submit** button.
    They then review personally identifiable information - First name, Last name, email, MAC address (sent from the board),
-   City, Country, Latitude, Longitude (which the app acquires from SmartPhone GPS).  
+   City, Country, Latitude, Longitude (which the app acquires from SmartPhone GPS).
    When they press the **Register** button, the data is posted to a HTTP RESTful endpoint `/OpenEEWRegistration`
    <table><tr><td>
    <p align="center">

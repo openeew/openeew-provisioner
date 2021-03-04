@@ -9,31 +9,9 @@ The OpenEEW Provisioning application helps enable an OpenEEW sensor:
 
 <table><tr><td>
 <p align="center">
-<img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-Get-Started.png">
+<img width="50%" height="50%" src="./images/OpenEEW-Provisioning-Android.gif">
 </p>
-</td><td>
-<p align="center">
-<img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-Connect2WiFi.png">
-</p>
-</td></tr>
-<tr><td>
-<p align="center">
-<img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-EnterWiFiCreds.png">
-</p>
-</td><td>
-<p align="center">
-<img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-EnterUserDetails.png">
-</p>
-</td></tr>
-<tr><td>
-<p align="center">
-<img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-Review-Register.png">
-</p>
-</td><td>
-<p align="center">
-<img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-ThankYou.png">
-</p>
-</td></tr></table>
+</tr></table>
 
 ## Configuration
 
