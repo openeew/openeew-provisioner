@@ -21,7 +21,7 @@ http.createServer((req, res) => {
 
 const user = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
-  res.end(JSON.stringify({ userId: "test-user-id", link: "http://localhost:8080/dashboard?token=abcdef" }))
+  res.end(JSON.stringify({ uuid: "test-uuid", link: "http://localhost:8080/dashboard?token=abcdef" }))
 }
 
 const provision = (req, res) => {

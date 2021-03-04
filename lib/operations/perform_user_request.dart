@@ -12,7 +12,7 @@ class PerformUserRequest extends AsyncPlatformOperation {
   @override
   Future<Map> web() {
     return Future<Map>.value({
-      'userId': 'test-user-id',
+      'uuid': 'test-uuid',
       'link': 'http://localhost:8080/dashboard?token=abcdef',
     });
   }

@@ -22,7 +22,7 @@ class PerformProvisionRequest extends AsyncPlatformOperation {
     var response = await http.post(
       DotEnv().env['PROVISION_ENDPOINT_URL'],
       body: jsonEncode({
-        'userId': this.args['state']['user_id'],
+        'uuid': this.args['state']['uuid'],
         'macaddress': this.args['state']['macaddress'],
         'latitude': this.args['state']['latitude'],
         'longitude': this.args['state']['longitude'],
