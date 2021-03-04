@@ -38,10 +38,10 @@ This document describes the OpenEEW sensor provisioning process.
   </p>
   </td></tr></table>
 
-1. In Step 1, select the **Connect via WiFi** button. Then Step 2, enter the local wireless network SSID / Password and select the **Send WiFi to OpenEEW sensor** button.
+1. In Step 1, Enter your name and email address, select the **Next** button. Then Step 2, enter the local wireless network SSID / Password and select the **Connect sensor to WiFi** button.
    <table><tr><td>
    <p align="center">
-   <img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-Connect2WiFi.png">
+   <img width="50%" height="50%" src="./images/OpenEEW-Provisioning-App-EnterUserDetails.png">
    </p>
    </td><td>
    <p align="center">
