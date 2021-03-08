@@ -19,8 +19,8 @@ final _form = StyleX({
 
 final formG100 = StyleX({
   // background-color
-  'form-modal-background-color': CColors.white0,
-  'form-group-background-color': CColors.white0,
+  'form-modal-background-color': CColors.gray20,
+  'form-group-background-color': CColors.gray20,
 
   // label-color
   'form-modal-label-color': CColors.gray70,

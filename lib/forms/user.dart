@@ -37,22 +37,22 @@ class UserFormState extends State<UserForm> {
       });
 
       Map result = await PerformUserRequest({
-        'givenName': _firstName,
-        'familyName': _lastName,
+        'first_name': _firstName,
+        'last_name': _lastName,
         'email': _email,
       }).perform();
 
       setState(() {
         _loading = false;
-        _error = result['uuid'] == null || result['uuid'].isEmpty;
+        _error = result['userId'] == null || result['userId'].isEmpty;
       });
 
       if (!_error) {
         widget.callback({
-          'givenName': _firstName,
-          'familyName': _lastName,
+          'first_name': _firstName,
+          'last_name': _lastName,
           'email': _email,
-          'uuid': result['uuid'],
+          'user_id': result['userId'],
           'link': result['link'],
         });
       }
@@ -64,26 +64,28 @@ class UserFormState extends State<UserForm> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        CText(
-          data: 'Turn on your sensor & fill out the basics',
-          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-        ),
-        Space(20),
-        RichText(
-          text: TextSpan(
-            style: DefaultTextStyle.of(context).style,
-            children: <TextSpan>[
-              TextSpan(text: 'Your sensor should be on and flashing a '),
-              TextSpan(text: 'blue light', style: TextStyle(color: CColors.blue60)),
-              TextSpan(text: '.'),
-            ]
-          )
-        ),
-        Space(20),
         CForm(
           key: _formKey,
           content: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              CText(
+                data: 'Turn on your sensor & fill out the basics',
+                style: TextStyle(fontSize: 20.0),
+                textAlign: TextAlign.left,
+              ),
+              Space(20),
+              RichText(
+                text: TextSpan(
+                  style: DefaultTextStyle.of(context).style,
+                  children: <TextSpan>[
+                    TextSpan(text: 'Your sensor should be on and flashing a '),
+                    TextSpan(text: 'blue light', style: TextStyle(color: CColors.blue60)),
+                    TextSpan(text: '.'),
+                  ]
+                )
+              ),
+              Space(20),
               ErrorMessage(this._error, "Sorry, we weren't able to create an account for you. Please check your credentials and try again."),
               Column(
                 children: <Widget>[
