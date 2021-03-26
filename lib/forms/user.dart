@@ -24,8 +24,8 @@ class UserFormState extends State<UserForm> {
 
   bool _loading = false;
   bool _error = false;
-  String _firstName = '';
-  String _lastName = '';
+  String _givenName = '';
+  String _familyName = '';
   String _email = '';
   String _password = '';
 
@@ -37,22 +37,22 @@ class UserFormState extends State<UserForm> {
       });
 
       Map result = await PerformUserRequest({
-        'first_name': _firstName,
-        'last_name': _lastName,
+        'givenName': _givenName,
+        'familyName': _familyName,
         'email': _email,
       }).perform();
 
       setState(() {
         _loading = false;
-        _error = result['userId'] == null || result['userId'].isEmpty;
+        _error = result['uuid'] == null || result['uuid'].isEmpty;
       });
 
       if (!_error) {
         widget.callback({
-          'first_name': _firstName,
-          'last_name': _lastName,
+          'givenName': _givenName,
+          'familyName': _familyName,
           'email': _email,
-          'user_id': result['userId'],
+          'uuid': result['uuid'],
           'link': result['link'],
         });
       }
@@ -91,19 +91,19 @@ class UserFormState extends State<UserForm> {
                 children: <Widget>[
                   Row(children: <Widget>[
                     Expanded(flex: 8, child: CTextField(
-                      id: 'firstName',
+                      id: 'givenName',
                       validator: (value) => _formKey.currentState.validatePresence(value, 'First name is required'),
                       label: 'Sensor owner',
                       hint: 'First name',
-                      onChanged: (value) => setState(() { _firstName = value; }),
+                      onChanged: (value) => setState(() { _givenName = value; }),
                     )),
                     Expanded(flex: 1, child: Container()),
                     Expanded(flex: 8, child: CTextField(
-                      id: 'lastName',
+                      id: 'familyName',
                       label: '',
                       validator: (value) => _formKey.currentState.validatePresence(value, 'Last name is required'),
                       hint: 'Last name',
-                      onChanged: (value) => setState(() { _lastName = value; }),
+                      onChanged: (value) => setState(() { _familyName = value; }),
                     )),
                   ]),
                   Space(20),
