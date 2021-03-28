@@ -24,8 +24,8 @@ class UserFormState extends State<UserForm> {
 
   bool _loading = false;
   bool _error = false;
-  String _firstName = '';
-  String _lastName = '';
+  String _givenName = '';
+  String _familyName = '';
   String _email = '';
   String _password = '';
 
@@ -37,8 +37,8 @@ class UserFormState extends State<UserForm> {
       });
 
       Map result = await PerformUserRequest({
-        'givenName': _firstName,
-        'familyName': _lastName,
+        'givenName': _givenName,
+        'familyName': _familyName,
         'email': _email,
       }).perform();
 
@@ -49,8 +49,8 @@ class UserFormState extends State<UserForm> {
 
       if (!_error) {
         widget.callback({
-          'givenName': _firstName,
-          'familyName': _lastName,
+          'givenName': _givenName,
+          'familyName': _familyName,
           'email': _email,
           'uuid': result['uuid'],
           'link': result['link'],
@@ -64,44 +64,46 @@ class UserFormState extends State<UserForm> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        CText(
-          data: 'Turn on your sensor & fill out the basics',
-          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-        ),
-        Space(20),
-        RichText(
-          text: TextSpan(
-            style: DefaultTextStyle.of(context).style,
-            children: <TextSpan>[
-              TextSpan(text: 'Your sensor should be on and flashing a '),
-              TextSpan(text: 'blue light', style: TextStyle(color: CColors.blue60)),
-              TextSpan(text: '.'),
-            ]
-          )
-        ),
-        Space(20),
         CForm(
           key: _formKey,
           content: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              CText(
+                data: 'Turn on your sensor & fill out the basics',
+                style: TextStyle(fontSize: 20.0),
+                textAlign: TextAlign.left,
+              ),
+              Space(20),
+              RichText(
+                text: TextSpan(
+                  style: DefaultTextStyle.of(context).style,
+                  children: <TextSpan>[
+                    TextSpan(text: 'Your sensor should be on and flashing a '),
+                    TextSpan(text: 'blue light', style: TextStyle(color: CColors.blue60)),
+                    TextSpan(text: '.'),
+                  ]
+                )
+              ),
+              Space(20),
               ErrorMessage(this._error, "Sorry, we weren't able to create an account for you. Please check your credentials and try again."),
               Column(
                 children: <Widget>[
                   Row(children: <Widget>[
                     Expanded(flex: 8, child: CTextField(
-                      id: 'firstName',
+                      id: 'givenName',
                       validator: (value) => _formKey.currentState.validatePresence(value, 'First name is required'),
                       label: 'Sensor owner',
                       hint: 'First name',
-                      onChanged: (value) => setState(() { _firstName = value; }),
+                      onChanged: (value) => setState(() { _givenName = value; }),
                     )),
                     Expanded(flex: 1, child: Container()),
                     Expanded(flex: 8, child: CTextField(
-                      id: 'lastName',
+                      id: 'familyName',
                       label: '',
                       validator: (value) => _formKey.currentState.validatePresence(value, 'Last name is required'),
                       hint: 'Last name',
-                      onChanged: (value) => setState(() { _lastName = value; }),
+                      onChanged: (value) => setState(() { _familyName = value; }),
                     )),
                   ]),
                   Space(20),

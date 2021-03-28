@@ -54,7 +54,7 @@ class StepsState extends State<Steps> {
                   color: CColors.gray90,
                   child: Column(
                     children: <Widget>[
-                      Space(20),
+                      Space(60),
                       Row(children: <Widget>[
                         HorizontalSpace(20),
                         CText(

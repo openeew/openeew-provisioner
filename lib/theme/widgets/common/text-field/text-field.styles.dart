@@ -23,9 +23,9 @@ final textFieldG100 = StyleX({
   'textfield-disabled-background-color': CColors.gray10,
 
   // modalform-background-color
-  'textfield-modalform-enabled-background-color': CColors.gray20,
-  'textfield-modalform-focus-background-color': CColors.gray20,
-  'textfield-modalform-disabled-background-color': CColors.gray20,
+  'textfield-modalform-enabled-background-color': CColors.gray10,
+  'textfield-modalform-focus-background-color': CColors.gray10,
+  'textfield-modalform-disabled-background-color': CColors.gray10,
 
   /// primary ///
 
@@ -92,7 +92,7 @@ final textFieldG100 = StyleX({
   ),
   'textfield-success-focus-border': OutlineInputBorder(
     borderRadius: BorderRadius.circular(0),
-    borderSide: BorderSide(color: CColors.green60, width: 2),
+    borderSide: BorderSide(color: CColors.blue60, width: 2),
   ),
   'textfield-success-disabled-border': UnderlineInputBorder(
     borderRadius: BorderRadius.circular(0),
