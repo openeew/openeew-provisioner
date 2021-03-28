@@ -86,7 +86,7 @@ class ProvisionFormState extends State<ProvisionForm> {
         actions: NextButton(onClick: submit, text: 'Add my sensor to the network', loading: this._loading, width: 300),
         note: RichText(
           text: TextSpan(
-            style: DefaultTextStyle.of(context).style,
+            style: TextStyle(color: CColors.gray70),
             children: <TextSpan>[
               TextSpan(text: "Note: We'll list your device on the dashboard, but to maintain your privacy, we'll only show it's general location (ie, within ~5km of the nearest town). Your name and email will not be visible publicly.")
             ]

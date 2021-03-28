@@ -141,7 +141,7 @@ class SensorFormState extends State<SensorForm> {
           actions: NextButton(onClick: submit, text: 'Connect sensor to WiFi', loading: this._loading),
           note: RichText(
             text: TextSpan(
-              style: DefaultTextStyle.of(context).style,
+              style: TextStyle(color: CColors.gray70),
               children: <TextSpan>[
                 TextSpan(text: "We don't store your WiFi credentials. Upon entering your password here, we share it only with your sensor and only this one time to connect the sensor to the internet.")
               ]
