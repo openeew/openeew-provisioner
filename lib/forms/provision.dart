@@ -79,21 +79,19 @@ class ProvisionFormState extends State<ProvisionForm> {
             Row(children: <Widget>[
               Expanded(flex: 1, child: InfoField('Country', state['country'])),
             ]),
-            Space(10),
-            Space(20),
+            Space(30),
             ErrorMessage(this._error, "Sorry, we weren't able to provision this device. Please ensure your WiFi is connected and try again."),
           ]
         ),
         actions: NextButton(onClick: submit, text: 'Add my sensor to the network', loading: this._loading, width: 300),
-      ),
-      Space(40),
-      RichText(
-        text: TextSpan(
-          style: DefaultTextStyle.of(context).style,
-          children: <TextSpan>[
-            TextSpan(text: "Note: We'll list your device on the dashboard, but to maintain your privacy, we'll only show it's general location (ie, within ~5km of the nearest town). Your name and email will not be visible publicly.")
-          ]
-        )
+        note: RichText(
+          text: TextSpan(
+            style: TextStyle(color: CColors.gray70),
+            children: <TextSpan>[
+              TextSpan(text: "Note: We'll list your device on the dashboard, but to maintain your privacy, we'll only show it's general location (ie, within ~5km of the nearest town). Your name and email will not be visible publicly.")
+            ]
+          )
+        ),
       ),
     ]);
   }

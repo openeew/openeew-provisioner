@@ -16,6 +16,7 @@ class CForm extends StatefulWidget {
     this.type = CFormType.modal,
     this.content,
     this.actions,
+    this.note,
   }) : super(key: key);
 
   final CFormType type;
@@ -28,6 +29,7 @@ class CForm extends StatefulWidget {
 
   final Widget content;
   final Widget actions;
+  final Widget note;
 
   CFormState createState() => CFormState();
 
@@ -106,6 +108,10 @@ class CFormState extends State<CForm> {
                 ],
                 if (widget.content != null) widget.content,
                 if (widget.actions != null) widget.actions,
+                if (widget.note != null) ...[
+                  const SizedBox(height: 20),
+                  widget.note,
+                ]
               ],
             ),
           ),

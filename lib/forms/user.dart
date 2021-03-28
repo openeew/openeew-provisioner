@@ -67,6 +67,7 @@ class UserFormState extends State<UserForm> {
         CForm(
           key: _formKey,
           content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               CText(
