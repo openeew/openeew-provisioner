@@ -1,0 +1,65 @@
+PODS:
+  - connectivity (0.0.1):
+    - Flutter
+    - Reachability
+  - Flutter (1.0.0)
+  - geocoding (1.0.5):
+    - Flutter
+  - geolocator (6.2.0):
+    - Flutter
+  - "permission_handler (5.1.0+2)":
+    - Flutter
+  - Reachability (3.2)
+  - smartconfig (0.0.1):
+    - Flutter
+  - url_launcher (0.0.1):
+    - Flutter
+  - wifi_info_flutter (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - connectivity (from `.symlinks/plugins/connectivity/ios`)
+  - Flutter (from `Flutter`)
+  - geocoding (from `.symlinks/plugins/geocoding/ios`)
+  - geolocator (from `.symlinks/plugins/geolocator/ios`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+  - smartconfig (from `.symlinks/plugins/smartconfig/ios`)
+  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+  - wifi_info_flutter (from `.symlinks/plugins/wifi_info_flutter/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Reachability
+
+EXTERNAL SOURCES:
+  connectivity:
+    :path: ".symlinks/plugins/connectivity/ios"
+  Flutter:
+    :path: Flutter
+  geocoding:
+    :path: ".symlinks/plugins/geocoding/ios"
+  geolocator:
+    :path: ".symlinks/plugins/geolocator/ios"
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
+  smartconfig:
+    :path: ".symlinks/plugins/smartconfig/ios"
+  url_launcher:
+    :path: ".symlinks/plugins/url_launcher/ios"
+  wifi_info_flutter:
+    :path: ".symlinks/plugins/wifi_info_flutter/ios"
+
+SPEC CHECKSUMS:
+  connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  geocoding: 32cfcdb16d38d907caaba65e2e42ad10d38bee58
+  geolocator: f5e3de65e241caba7ce3e8a618803387bda73384
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  smartconfig: b1b2a8e71c7369bbb2c024b185a75dd50ba58b79
+  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
+  wifi_info_flutter: 55d4c2469034f5b5c38063ccefa62f708a503a2b
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.0
