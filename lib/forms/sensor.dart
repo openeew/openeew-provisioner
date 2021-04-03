@@ -113,10 +113,16 @@ class SensorFormState extends State<SensorForm> {
       children: <Widget>[
         CForm(
           key: _formKey,
-          title: 'Connect your sensor to WiFi',
+          title: 'Configure WiFi on your sensor',
           content: Column(
             children: <Widget>[
               ErrorMessage(this._error, "Sorry, your sensor was unable to connect to the WiFi. Please check it is on and ready, and try again."),
+              CText(
+                data: "We'll use the WiFi network that your phone is connected to.",
+                style: TextStyle(fontSize: 16.0),
+                textAlign: TextAlign.left,
+              ),
+              Space(20),
               CTextField(
                 validator: (value) => _formKey.currentState.validatePresence(value, 'Please connect to a WiFi network'),
                 readOnly: true,
@@ -132,10 +138,10 @@ class SensorFormState extends State<SensorForm> {
                 prefixIcon: Icon(Icons.lock_outlined),
                 hint: 'WiFi password',
                 label: 'Password',
-                description: "(After the initial setup, you can connect your device via ethernet or LTE if you prefer)",
+                description: "(After the initial setup, you can connect your device via Ethernet or WiFi if you prefer)",
                 onChanged: (value) => setState(() { _password = value; }),
               ),
-              Space(20),
+              Space(20)
             ],
           ),
           actions: NextButton(onClick: submit, text: 'Connect sensor to WiFi', loading: this._loading),
