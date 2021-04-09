@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:stylex/stylex.dart';
 
 final _materialTheme = ThemeData(
-  scaffoldBackgroundColor: CColors.gray10,
+  scaffoldBackgroundColor: CColors.gray20,
   primaryColor: CColors.blue60,
   accentColor: CColors.gray90,
   disabledColor: CColors.gray80,
