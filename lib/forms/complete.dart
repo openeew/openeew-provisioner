@@ -49,7 +49,7 @@ class CompleteFormState extends State<CompleteForm> {
                 text: TextSpan(
                   style: DefaultTextStyle.of(context).style,
                   children: <TextSpan>[
-                    TextSpan(text: "Thank you for adding your sensor to the OpenEEW network - helping us detect and issue alerts that allow people to get out of harm's way. You can now view your device (and others) on the OpenEEW dashboard.")
+                    TextSpan(text: "Thank you for adding your sensor to the OpenEEW network - helping us detect earthquakes and issue alerts that allow people to get out of harm's way.")
                   ]
                 )
               ),
@@ -58,7 +58,9 @@ class CompleteFormState extends State<CompleteForm> {
                 data: 'Next steps',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              Space(5),
+              Space(20),
+              NextButton(onClick: submit, text: 'Visit the OpenEEW dashboard', width: 250),
+              Space(20),
               RichText(
                 text: TextSpan(
                   style: DefaultTextStyle.of(context).style,
@@ -66,15 +68,13 @@ class CompleteFormState extends State<CompleteForm> {
                     TextSpan(text: "Login to the "),
                     TextSpan(
                       text: "OpenEEW dashboard",
-                      style: TextStyle(color: CColors.blue60),
+                      style: TextStyle(color: CColors.blue80),
                       recognizer: TapGestureRecognizer()..onTap = () => submit(context)
                     ),
                     TextSpan(text: " and being to see activity that your sensor detects."),
                   ]
                 )
               ),
-              Space(120),
-              NextButton(onClick: submit, text: 'Visit the OpenEEW dashboard', width: 300),
               Space(60),
               CLink(url: 'Add another sensor to the network', onTap: (event) => restart(context)),
             ],
