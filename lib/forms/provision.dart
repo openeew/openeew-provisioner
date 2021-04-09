@@ -52,7 +52,7 @@ class ProvisionFormState extends State<ProvisionForm> {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
-      Space(20),
+      Space(5),
       CForm(
         content: Column(
           children: <Widget>[
@@ -60,13 +60,23 @@ class ProvisionFormState extends State<ProvisionForm> {
               text: TextSpan(
                 style: DefaultTextStyle.of(context).style,
                 children: <TextSpan>[
-                  TextSpan(text: 'Alright! Your sensor is connected to the internet and should show a '),
-                  TextSpan(text: 'green light', style: TextStyle(color: CColors.green60)),
-                  TextSpan(text: '. Now, review the following information and add your sensor to the OpenEEW network.'),
+                  TextSpan(text: 'Alright! Your sensor is connected to the internet.'),
+                  TextSpan(text: ' Now, review the following information and add your sensor to the OpenEEW network.'),
                 ]
               )
             ),
-            Space(20),
+            Space(10),
+            Divider( color: CColors.gray40, thickness: 1.0 ),
+            Space(5),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+              CText(
+                data: 'Summary:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ]),
+            Space(10),
             Row(children: <Widget>[
               Expanded(flex: 1, child: InfoField('Sensor ID', state['macaddress'])),
               Expanded(flex: 1, child: InfoField('Coordinates', state['latitude'] + ',' + state['longitude'])),
@@ -79,14 +89,16 @@ class ProvisionFormState extends State<ProvisionForm> {
             Row(children: <Widget>[
               Expanded(flex: 1, child: InfoField('Country', state['country'])),
             ]),
-            Space(30),
+            Space(10),
+            Divider( color: CColors.gray40, thickness: 1.0 ),
+            Space(10),
             ErrorMessage(this._error, "Sorry, we weren't able to provision this device. Please ensure your WiFi is connected and try again."),
           ]
         ),
         actions: NextButton(onClick: submit, text: 'Add my sensor to the network', loading: this._loading, width: 300),
         note: RichText(
           text: TextSpan(
-            style: TextStyle(color: CColors.gray70),
+            style: TextStyle(color: CColors.gray60),
             children: <TextSpan>[
               TextSpan(text: "Note: We'll list your device on the dashboard, but to maintain your privacy, we'll only show it's general location (ie, within ~5km of the nearest town). Your name and email will not be visible publicly.")
             ]

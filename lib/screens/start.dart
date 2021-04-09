@@ -43,25 +43,26 @@ class StartState extends State<Start> {
                 ),
               ),
               child: Container(
+                padding: EdgeInsets.all(40),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    Space(110),
                     Logo(1),
-                    Space(20),
+                    Space(25),
                     CText(
                       data: 'OpenEEW Sensors',
                       style: TextStyle(color: CColors.white0, fontSize: 30.0, fontWeight: FontWeight.bold),
                     ),
-                    Space(10),
+                    Space(7),
                     CText(
                       data: 'Provision your sensor',
-                      style: TextStyle(color: CColors.white0, fontSize: 16.0),
+                      style: TextStyle(color: CColors.white0, fontSize: 18.0),
                     ),
-                    Space(240),
+                    Space(200),
                     Loading(indicator: LineScaleIndicator(), size: 25.0),
                     Space(120),
-
                   ]
                 ),
               ),

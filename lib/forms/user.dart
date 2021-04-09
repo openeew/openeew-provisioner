@@ -71,20 +71,9 @@ class UserFormState extends State<UserForm> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               CText(
-                data: 'Turn on your sensor & fill out the basics',
+                data: 'Connect your sensor to a USB-C cable. Then, let us know who the sensor belongs to.',
                 style: TextStyle(fontSize: 20.0),
                 textAlign: TextAlign.left,
-              ),
-              Space(20),
-              RichText(
-                text: TextSpan(
-                  style: DefaultTextStyle.of(context).style,
-                  children: <TextSpan>[
-                    TextSpan(text: 'Your sensor should be on and flashing a '),
-                    TextSpan(text: 'blue light', style: TextStyle(color: CColors.blue60)),
-                    TextSpan(text: '.'),
-                  ]
-                )
               ),
               Space(20),
               ErrorMessage(this._error, "Sorry, we weren't able to create an account for you. Please check your credentials and try again."),
