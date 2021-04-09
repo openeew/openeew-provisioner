@@ -113,7 +113,7 @@ class SensorFormState extends State<SensorForm> {
       children: <Widget>[
         CForm(
           key: _formKey,
-          title: 'Configure WiFi on your sensor',
+          title: 'Connect your sensor to WiFi',
           content: Column(
             children: <Widget>[
               ErrorMessage(this._error, "Sorry, your sensor was unable to connect to the WiFi. Please check it is on and ready, and try again."),
