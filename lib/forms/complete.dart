@@ -59,7 +59,7 @@ class CompleteFormState extends State<CompleteForm> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Space(20),
-              NextButton(onClick: submit, text: 'Visit the OpenEEW dashboard', width: 250),
+              NextButton(onClick: submit, text: 'Visit the OpenEEW dashboard', width: 225),
               Space(20),
               RichText(
                 text: TextSpan(
