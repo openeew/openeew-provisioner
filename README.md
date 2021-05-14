@@ -46,6 +46,21 @@ _(NB this app will run in the web without a device, but due to the nature of the
   ```sh
   flutter run
   ```
+---
+
+In order to create a signed app bundle for the play store:
+
+- update `pubspec.yaml`' with the latest version, eg for version 1.0.1 :
+
+```
+version: 1.0.1+1
+```
+- add the path to the signed key in `/android/key.properties`
+
+- run 
+````
+flutter build appbundle
+````
 
 ## Contributors
 
