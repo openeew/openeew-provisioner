@@ -109,7 +109,7 @@ class UserFormState extends State<UserForm> {
               Space(20),
             ],
           ),
-          actions: NextButton(onClick: submit, text:'Next', loading: this._loading),
+          actions: NextButton(onClick: submit, text:'Next', loading: this._loading, width: 225),
         ),
       ]
     );

@@ -144,7 +144,7 @@ class SensorFormState extends State<SensorForm> {
               Space(20)
             ],
           ),
-          actions: NextButton(onClick: submit, text: 'Connect sensor to WiFi', loading: this._loading),
+          actions: NextButton(onClick: submit, text: 'Connect sensor to WiFi', loading: this._loading, width: 225),
           note: RichText(
             text: TextSpan(
               style: TextStyle(color: CColors.gray70),

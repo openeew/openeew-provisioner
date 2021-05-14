@@ -72,7 +72,7 @@ class ProvisionFormState extends State<ProvisionForm> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
               CText(
-                data: 'Summary:',
+                data: 'Summary',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ]),
@@ -95,7 +95,7 @@ class ProvisionFormState extends State<ProvisionForm> {
             ErrorMessage(this._error, "Sorry, we weren't able to provision this device. Please ensure your WiFi is connected and try again."),
           ]
         ),
-        actions: NextButton(onClick: submit, text: 'Add my sensor to the network', loading: this._loading, width: 300),
+        actions: NextButton(onClick: submit, text: 'Add my sensor to the network', loading: this._loading, width: 225),
         note: RichText(
           text: TextSpan(
             style: TextStyle(color: CColors.gray60),
