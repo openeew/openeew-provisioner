@@ -1,7 +1,9 @@
 # OpenEEW Provisioning App
+The OpenEEW Provisioning application helps enable an OpenEEW sensor, connect it to a local network, and associate it with your account.
 
-The OpenEEW Provisioning application helps enable an OpenEEW sensor:
+The Android release is available [here](https://play.google.com/store/apps/details?id=com.openeew_provisioner&hl=en_NZ&gl=US). The iOS will be available soon.
 
+### What does it do
 - To connect your new OpenEEW sensor to a WiFi network, it will initially power up and poll for SmartConfig details.
 - SmartConfig is a provisioning technology developed by TI to connect a new WiFi device to a WiFi network. It uses a mobile app to broadcast the network credentials from a smartphone, or a tablet, to an un-provisioned WiFi device. The advantage of this technology is that the device does not need to directly know SSID or password of an Access Point (AP). This information is provided using this smartphone app. This is particularly important to headless device and systems, due to their lack of a user interface.
 - This Android application prompts you for your WiFi SSID and password and sends it to the OpenEEW device via SmartConfig.
