@@ -54,9 +54,9 @@ class StepsState extends State<Steps> {
                   color: CColors.gray90,
                   child: Column(
                     children: <Widget>[
-                      Space(60),
+                      Space(100),
                       Row(children: <Widget>[
-                        HorizontalSpace(20),
+                        HorizontalSpace(13),
                         CText(
                           data: 'OpenEEW',
                           style: TextStyle(color: CColors.white0, fontSize: 20.0, fontWeight: FontWeight.bold),
@@ -67,7 +67,7 @@ class StepsState extends State<Steps> {
                           style: TextStyle(color: CColors.white0, fontSize: 20.0),
                         ),
                       ]),
-                      Space(20),
+                      Space(10),
                     ],
                   ),
                 ),
