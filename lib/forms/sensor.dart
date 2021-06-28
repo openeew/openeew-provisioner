@@ -35,28 +35,35 @@ class SensorFormState extends State<SensorForm> {
   String _city;
   String _country;
   String _mac;
+  int _frequency;
+
+  final int MIN_WIFI_FREQUENCY = 2401;
+  final int MAX_WIFI_FREQUENCY = 2495;
 
   void submit(BuildContext context) async {
-    if (_formKey.currentState.validate()) {
+    // if (_formKey.currentState.validate()) {
+    if (true) {
       setState(() {
         _loading = true;
         _error = false;
       });
 
-      String _macaddress = await PerformSmartconfigRequest({
-        'ssid': _ssid,
-        'bssid': _bssid,
-        'password': _password,
-      }).perform();
+      // String _macaddress = await PerformSmartconfigRequest({
+      //   'ssid': _ssid,
+      //   'bssid': _bssid,
+      //   'password': _password,
+      // }).perform();
 
       setState(() {
         _loading = false;
-        _error = _macaddress == null || _macaddress == "";
+        // _error = _macaddress == null || _macaddress == "";
+        _error = false;
       });
 
       if (!_error) {
         widget.callback({
-          'macaddress': _macaddress,
+          'macaddress': '123',
+          // 'macaddress': _macaddress,
           'latitude': _latitude,
           'longitude': _longitude,
           'city': _city,
@@ -87,6 +94,7 @@ class SensorFormState extends State<SensorForm> {
         setState(() {
           _ssid = wifi['ssid'];
           _bssid = wifi['bssid'];
+          _frequency = wifi['frequency'];
         });
       }
     } on PlatformException {}
@@ -131,6 +139,20 @@ class SensorFormState extends State<SensorForm> {
                 hint: 'Your WiFi network',
                 label: 'SSID',
               ),
+              Space(5),
+              _frequency != null &&
+                      (_frequency < MIN_WIFI_FREQUENCY ||
+                          _frequency > MAX_WIFI_FREQUENCY)
+                  ? Padding(
+                    padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.1),
+                    child: CText(
+                        data:
+                            "Please, make sure you are using a 2.4GHz wifi network if available.",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(color: CColors.red40, fontSize: 16.0),
+                      ),
+                  )
+                  : Container(),
               Space(20),
               CTextField(
                 validator: (value) => _formKey.currentState.validatePresence(value, 'WiFi password is required'),
