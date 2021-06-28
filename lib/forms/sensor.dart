@@ -41,29 +41,26 @@ class SensorFormState extends State<SensorForm> {
   final int MAX_WIFI_FREQUENCY = 2495;
 
   void submit(BuildContext context) async {
-    // if (_formKey.currentState.validate()) {
-    if (true) {
+    if (_formKey.currentState.validate()) {
       setState(() {
         _loading = true;
         _error = false;
       });
 
-      // String _macaddress = await PerformSmartconfigRequest({
-      //   'ssid': _ssid,
-      //   'bssid': _bssid,
-      //   'password': _password,
-      // }).perform();
+      String _macaddress = await PerformSmartconfigRequest({
+        'ssid': _ssid,
+        'bssid': _bssid,
+        'password': _password,
+      }).perform();
 
       setState(() {
         _loading = false;
-        // _error = _macaddress == null || _macaddress == "";
-        _error = false;
+        _error = _macaddress == null || _macaddress == "";
       });
 
       if (!_error) {
         widget.callback({
-          'macaddress': '123',
-          // 'macaddress': _macaddress,
+          'macaddress': _macaddress,
           'latitude': _latitude,
           'longitude': _longitude,
           'city': _city,
