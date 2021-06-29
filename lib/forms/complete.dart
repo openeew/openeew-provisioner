@@ -26,7 +26,6 @@ class CompleteForm extends StatefulWidget {
 
 class CompleteFormState extends State<CompleteForm> {
   final Map state;
-  final colorGrey = Color.fromARGB(255, 87, 87, 87);
 
   CompleteFormState(this.state);
 
@@ -60,7 +59,7 @@ class CompleteFormState extends State<CompleteForm> {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: colorGrey),
+                  color: CColors.gray40),
               ),
               Space(20),
               NextButton(onClick: submit, text: 'Visit the OpenEEW dashboard', width: 225),
@@ -77,7 +76,7 @@ class CompleteFormState extends State<CompleteForm> {
                     ),
                     TextSpan(
                       text: " and being to see activity that your sensor detects.",
-                      style: TextStyle(color: colorGrey)
+                      style: TextStyle(color: CColors.gray40)
                     ),
                   ]
                 )
