@@ -47,7 +47,7 @@ class CompleteFormState extends State<CompleteForm> {
             children: <Widget>[
               RichText(
                 text: TextSpan(
-                  style: DefaultTextStyle.of(context).style,
+                  style: TextStyle(fontSize: 20, color: Colors.black),
                   children: <TextSpan>[
                     TextSpan(text: "Thank you for adding your sensor to the OpenEEW network - helping us detect earthquakes and issue alerts that allow people to get out of harm's way.")
                   ]
@@ -56,7 +56,10 @@ class CompleteFormState extends State<CompleteForm> {
               Space(20),
               CText(
                 data: 'Next steps',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: CColors.gray40),
               ),
               Space(20),
               NextButton(onClick: submit, text: 'Visit the OpenEEW dashboard', width: 225),
@@ -71,7 +74,10 @@ class CompleteFormState extends State<CompleteForm> {
                       style: TextStyle(color: CColors.blue80),
                       recognizer: TapGestureRecognizer()..onTap = () => submit(context)
                     ),
-                    TextSpan(text: " and being to see activity that your sensor detects."),
+                    TextSpan(
+                      text: " and being to see activity that your sensor detects.",
+                      style: TextStyle(color: CColors.gray40)
+                    ),
                   ]
                 )
               ),
