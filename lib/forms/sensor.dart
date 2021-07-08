@@ -134,7 +134,7 @@ class SensorFormState extends State<SensorForm> {
                 readOnly: true,
                 controller: TextEditingController(text: _ssid),
                 prefixIcon: Icon(Icons.wifi_outlined),
-                suffixIcon: Icon(Icons.warning_outlined),
+                //suffixIcon: Icon(Icons.warning_outlined),
                 hint: 'No WiFi network detected',
                 label: 'SSID',
               ),
