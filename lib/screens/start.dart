@@ -9,7 +9,7 @@ import 'package:openeew_provisioner/widgets/logo.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
 import 'package:openeew_provisioner/widgets/space.dart';
 
-import 'package:openeew_provisioner/theme/carbon.dart';
+import 'package:carbon/carbon.dart';
 
 class Start extends StatefulWidget {
   @override

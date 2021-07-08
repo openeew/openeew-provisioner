@@ -5,7 +5,7 @@ import 'package:loading/indicator/line_scale_indicator.dart';
 
 import 'package:openeew_provisioner/operations/perform_route.dart';
 
-import 'package:openeew_provisioner/theme/carbon.dart';
+import 'package:carbon/carbon.dart';
 
 class NextButton extends StatelessWidget {
   final Widget route;

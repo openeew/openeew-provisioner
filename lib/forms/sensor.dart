@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:openeew_provisioner/theme/carbon.dart';
+import 'package:carbon/carbon.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
@@ -41,7 +40,7 @@ class SensorFormState extends State<SensorForm> {
   final int MAX_WIFI_FREQUENCY = 2495;
 
   void submit(BuildContext context) async {
-    if (_formKey.currentState.validate()) {
+    //if (_formKey.currentState.validate()) {
       setState(() {
         _loading = true;
         _error = false;
@@ -67,7 +66,7 @@ class SensorFormState extends State<SensorForm> {
           'country': _country,
         });
       }
-    }
+    //}
   }
 
   @override
@@ -115,11 +114,13 @@ class SensorFormState extends State<SensorForm> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         CForm(
           key: _formKey,
           title: 'Connect your sensor to WiFi',
           content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               ErrorMessage(this._error, "Sorry, your sensor was unable to connect to the WiFi. Please check it is on and ready, and try again."),
               CText(
@@ -129,22 +130,21 @@ class SensorFormState extends State<SensorForm> {
               ),
               Space(20),
               CTextField(
-                validator: (value) => _formKey.currentState.validatePresence(value, 'Please connect to a WiFi network'),
+                validator: (value) => _formKey.currentState.validatePresence(value, 'Connect to a 2.4GHz network'),
                 readOnly: true,
                 controller: TextEditingController(text: _ssid),
                 prefixIcon: Icon(Icons.wifi_outlined),
-                hint: 'Your WiFi network',
+                //suffixIcon: Icon(Icons.warning_outlined),
+                hint: 'No WiFi network detected',
                 label: 'SSID',
               ),
               Space(5),
-              _frequency != null &&
-                      (_frequency < MIN_WIFI_FREQUENCY ||
-                          _frequency > MAX_WIFI_FREQUENCY)
+              _frequency != null && (_frequency < MIN_WIFI_FREQUENCY || _frequency > MAX_WIFI_FREQUENCY)
                   ? Padding(
                     padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.1),
                     child: CText(
                         data:
-                            "Please, make sure you are using a 2.4GHz wifi network if available.",
+                            "Connect phone to a 2.4GHz network",
                         textAlign: TextAlign.start,
                         style: TextStyle(color: CColors.red40, fontSize: 16.0),
                       ),
@@ -163,15 +163,34 @@ class SensorFormState extends State<SensorForm> {
               Space(20)
             ],
           ),
-          actions: NextButton(onClick: submit, text: 'Connect sensor to WiFi', loading: this._loading, width: 225),
-          note: RichText(
-            text: TextSpan(
-              style: TextStyle(color: CColors.gray70),
-              children: <TextSpan>[
-                TextSpan(text: "We don't store your WiFi credentials. Upon entering your password here, we share it only with your sensor and only this one time to connect the sensor to the internet.")
-              ]
-            )
-          )
+          actions: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 18.0),
+                child:
+                  NextButton(onClick: submit, text: 'Connect sensor to WiFi', loading: this._loading, width: 225),
+              )
+            ],
+          ),
+          note: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 18.0),
+                child: RichText(
+                  text: TextSpan(
+                    style: TextStyle(color: CColors.gray70),
+                    children: <TextSpan>[
+                      TextSpan(text: "We don't store your WiFi credentials. Upon entering your password here, we share it only with your sensor and only this one time to connect the sensor to the internet.")
+                    ]
+                  )
+                )
+              )
+            ],
+          ),
         ),
       ]
     );

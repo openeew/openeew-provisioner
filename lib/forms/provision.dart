@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:openeew_provisioner/theme/carbon.dart';
+import 'package:carbon/carbon.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/info_field.dart';
@@ -95,14 +95,33 @@ class ProvisionFormState extends State<ProvisionForm> {
             ErrorMessage(this._error, "Sorry, we weren't able to provision this device. Please ensure your WiFi is connected and try again."),
           ]
         ),
-        actions: NextButton(onClick: submit, text: 'Add my sensor to the network', loading: this._loading, width: 225),
-        note: RichText(
-          text: TextSpan(
-            style: TextStyle(color: CColors.gray60),
-            children: <TextSpan>[
-              TextSpan(text: "Note: We'll list your device on the dashboard, but to maintain your privacy, we'll only show it's general location (ie, within ~5km of the nearest town). Your name and email will not be visible publicly.")
-            ]
-          )
+        actions: Column(
+         crossAxisAlignment: CrossAxisAlignment.start,
+         mainAxisAlignment: MainAxisAlignment.start,
+         children: <Widget>[
+           Container(
+           padding: EdgeInsets.only(left: 18.0),
+             child:
+               NextButton(onClick: submit, text: 'Add my sensor to the network', loading: this._loading, width: 225),
+           )
+         ],
+        ),
+        note: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(left: 18.0),
+              child: RichText(
+                text: TextSpan(
+                  style: TextStyle(color: CColors.gray70),
+                  children: <TextSpan>[
+                    TextSpan(text: "Note: We'll list your device on the dashboard, but to maintain your privacy, we'll only show it's general location (ie, within ~5km of the nearest town). Your name and email will not be visible publicly.")
+                  ]
+                )
+              )
+            )
+          ],
         ),
       ),
     ]);

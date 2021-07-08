@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import 'package:openeew_provisioner/theme/carbon.dart';
+import 'package:carbon/carbon.dart';
 
 import 'package:openeew_provisioner/widgets/space.dart';
 import 'package:openeew_provisioner/widgets/next_button.dart';
@@ -68,14 +68,17 @@ class CompleteFormState extends State<CompleteForm> {
                 text: TextSpan(
                   style: DefaultTextStyle.of(context).style,
                   children: <TextSpan>[
-                    TextSpan(text: "Login to the "),
+                    TextSpan(
+                      text: "Login to the ",
+                      style: TextStyle(color: CColors.gray40)
+                    ),
                     TextSpan(
                       text: "OpenEEW dashboard",
-                      style: TextStyle(color: CColors.blue80),
+                      style: TextStyle(color: CColors.blue40),
                       recognizer: TapGestureRecognizer()..onTap = () => submit(context)
                     ),
                     TextSpan(
-                      text: " and being to see activity that your sensor detects.",
+                      text: " and begin to see activity that your sensor detects.",
                       style: TextStyle(color: CColors.gray40)
                     ),
                   ]

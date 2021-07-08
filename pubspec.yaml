@@ -1,5 +1,5 @@
 name: openeew_provisioner
-description: A new Flutter project.
+description: OpenEEW Provisioner
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -31,11 +31,12 @@ dependencies:
   loading: "^1.0.2"
   geolocator: "^6.1.8"
   geocoding: "^1.0.5"
-  stylex: "^1.1.0"
   url_launcher: "^5.7.5"
-  flutter_svg: "^0.19.0"
-  flutter_launcher_icons: "^0.8.0"
+  flutter_svg: "^0.22.0"
+  flutter_launcher_icons: "^0.9.0"
   wifi_info_plugin: ^1.1.5
+  carbon:
+    path: carbon
   flutter:
     sdk: flutter
 
