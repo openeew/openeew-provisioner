@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:openeew_provisioner/theme/carbon.dart';
+import 'package:carbon/carbon.dart';
 import 'package:openeew_provisioner/widgets/space.dart';
 
 class ErrorMessage extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:openeew_provisioner/theme/carbon.dart';
+import 'package:carbon/carbon.dart';
 
 import 'package:openeew_provisioner/operations/perform_user_request.dart';
 
@@ -81,7 +81,7 @@ class UserFormState extends State<UserForm> {
                 children: <Widget>[
                   Row(children: <Widget>[
                     Expanded(flex: 8, child: CTextField(
-                      id: 'givenName',
+                      //id: 'givenName',
                       validator: (value) => _formKey.currentState.validatePresence(value, 'First name is required'),
                       label: 'Sensor owner',
                       hint: 'First name',
@@ -89,7 +89,7 @@ class UserFormState extends State<UserForm> {
                     )),
                     Expanded(flex: 1, child: Container()),
                     Expanded(flex: 8, child: CTextField(
-                      id: 'familyName',
+                      //id: 'familyName',
                       label: '',
                       validator: (value) => _formKey.currentState.validatePresence(value, 'Last name is required'),
                       hint: 'Last name',
@@ -100,7 +100,7 @@ class UserFormState extends State<UserForm> {
                 ]
               ),
               CTextField(
-                id: 'email',
+                //id: 'email',
                 validator: (value) => _formKey.currentState.validatePresence(value, 'Contact email is required'),
                 label: 'Email',
                 hint: 'you@example.com',
@@ -109,7 +109,17 @@ class UserFormState extends State<UserForm> {
               Space(20),
             ],
           ),
-          actions: NextButton(onClick: submit, text:'Next', loading: this._loading, width: 225),
+          actions: Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
+           mainAxisAlignment: MainAxisAlignment.start,
+           children: <Widget>[
+             Container(
+             padding: EdgeInsets.only(left: 18.0),
+               child:
+                 NextButton(onClick: submit, text:'Next', loading: this._loading, width: 225),
+             )
+           ],
+         ),
         ),
       ]
     );

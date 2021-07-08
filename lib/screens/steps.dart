@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:openeew_provisioner/theme/carbon.dart';
+import 'package:carbon/carbon.dart';
 
 import 'package:openeew_provisioner/steps/1_user.dart';
 import 'package:openeew_provisioner/steps/2_sensor.dart';
